@@ -20,7 +20,6 @@ public class BoardCell {
 
 
 	public Vec2d getPosition() {
-		// TODO: implementation
 		return position;
 	}
 
@@ -29,8 +28,7 @@ public class BoardCell {
 	}
 	
 	public boolean getIsSolutionCell() {
-		// TODO: implementation
-		return false;
+		return isSolutionCell;
 	}
 	
 	public void setSolutionCell(boolean isSolutionCell) {
