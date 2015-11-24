@@ -10,7 +10,6 @@ public class GameBoard {
 	private ArrayList<String> boardConfigFile;
 	private BoardCell[][] board;
 	private List<BoardCell> solutionCells;
-	private int score;
 	
 	public GameBoard() {
 		// TODO: implementation

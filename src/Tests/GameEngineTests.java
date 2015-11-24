@@ -36,6 +36,7 @@ public class GameEngineTests {
 	// Test advancing to next level
 	@Test
 	public void initializeGame() {
+		// need to set score to whatever we decide is needed 
 		engine.advanceNextLevel();
 	}
 
