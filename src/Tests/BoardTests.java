@@ -3,6 +3,8 @@ package Tests;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import Game.BoardCell;
 import Game.GameBoard;
 
 public class BoardTests {
@@ -11,25 +13,52 @@ public class BoardTests {
 	@BeforeClass
 	public void setUp() {
 		board = new GameBoard();
-		
 	}
 
 	// Test board is correctly initialized from .csv file
 	@Test
 	public void testInitializeBoard() {
-		fail("Not yet implemented");
+		// TODO: Write test that checks certain cell locations for specifics (player location, item location, etc)
+		//       to ensure board is being loaded in properly.
 	}
 	
 	// Test board dimensions
 	@Test
 	public void testBoardDimensions() {
-		fail("Not yet implemented");
+		int numRows = 10;					// Change value to whatever we decide on
+		int numCols = 10;					// Change value to whatever we decide on
+		
+		assertTrue(numRows == board.getDimensions().x);
+		assertTrue(numCols == board.getDimensions().y);
 	}
 	
-	// Test potential solution/answer tile locations
+	// Test potential solution/answer cell locations
 	@Test
-	public void testSolutionTileLocations() {
-		fail("Not yet implemented");
+	public void testSolutionCellLocations() {
+		//TODO: We need to decide on fixed number of solutionCells (6 is a good number).
+		// NOTE: Below testCell positions are all dependent on floorOne's layout
+		// NOTE: testCell_#_# = testCell_row#_col# (0-based)
+		
+		BoardCell testCell_0_0 = new BoardCell();
+		BoardCell testCell_0_5 = new BoardCell();
+		BoardCell testCell_0_9 = new BoardCell();
+		BoardCell testCell_5_2 = new BoardCell();
+		BoardCell testCell_5_8 = new BoardCell();
+		BoardCell testCell_8_1 = new BoardCell();
+		
+		assertTrue(testCell_0_0.getIsSolutionCell());
+		assertTrue(testCell_0_5.getIsSolutionCell());
+		assertTrue(testCell_0_9.getIsSolutionCell());
+		assertTrue(testCell_5_2.getIsSolutionCell());
+		assertTrue(testCell_5_8.getIsSolutionCell());
+		assertTrue(testCell_8_1.getIsSolutionCell());
+		
+		assertTrue(board.getSolutionCells().contains(testCell_0_0));
+		assertTrue(board.getSolutionCells().contains(testCell_0_5));
+		assertTrue(board.getSolutionCells().contains(testCell_0_9));
+		assertTrue(board.getSolutionCells().contains(testCell_5_2));
+		assertTrue(board.getSolutionCells().contains(testCell_5_8));
+		assertTrue(board.getSolutionCells().contains(testCell_8_1));
 	}
 
 }
