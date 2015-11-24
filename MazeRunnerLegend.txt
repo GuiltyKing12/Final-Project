@@ -1,0 +1,5 @@
+P, Player
+W, Path
+A, Answer
+N, None
+I, Item
