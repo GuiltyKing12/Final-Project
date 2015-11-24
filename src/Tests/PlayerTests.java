@@ -28,6 +28,7 @@ public class PlayerTests {
 	@Test
 	public void testInitializePlayer() {
 		fail("Not yet implemented");
+		assertEquals("player name", player.getName());
 	}
 		
 	// Test player movement

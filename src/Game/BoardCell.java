@@ -3,7 +3,7 @@ package Game;
 import com.sun.javafx.geom.Vec2d;
 
 public class BoardCell {
-	private Vec2d position;			// Coordinate on the board
+	private Vec2d position;				// Coordinate on the board
 	private int cellSideSize;			// Dimension of each cell's side
 	private boolean isSolutionCell;		// Is this cell a potential solution cell?
 	private char initial;				// Read from the boardConfig File
