@@ -1,0 +1,183 @@
+commit 34e96bc9c6b9a2601f0160d6b46e37a7010a0f8a
+Author: John Spielvogel <jspielvo@mymail.mines.edu>
+Date:   Tue Nov 24 21:53:19 2015 -0700
+
+    Commented out some code to make functions more empty and added evaluateGuess() to questionBank
+
+commit 112ff2d5feeaf328b4d400b58ba62eb582e14ed1
+Author: GuiltyKing12 <bher@mines.edu>
+Date:   Tue Nov 24 18:36:40 2015 -0700
+
+    Created test advancing levels, Added some class variables and methods to question banks
+    Very important we need to figure out how the questions going to work
+
+commit f7dca7aa607edf1c99004c62c0f6e053a7322f7e
+Author: GuiltyKing12 <bher@mines.edu>
+Date:   Tue Nov 24 18:15:43 2015 -0700
+
+    Changes: \n Added lives to player \n Finished adding failing tests to playertests
+
+commit d8851bd2be294ec16f44ade39cd8213f4d43d35f
+Author: KitoAcosta <jacosta@mymail.mines.edu>
+Date:   Tue Nov 24 12:24:15 2015 -0700
+
+    Updated the floorHigh.xlsx and added a legend.
+
+commit f0da60c00a3d2c0996bb4b5de02c52770469fa71
+Merge: 199cf3f fb05218
+Author: Junquan Lin & Thi La <julin@mines.edu>
+Date:   Tue Nov 24 12:21:24 2015 -0700
+
+    Merge branch 'master' of https://github.com/GuiltyKing12/Final-Project
+
+commit 199cf3fff8f6f950cef2070dc1f9c6420ed7c612
+Author: Junquan Lin & Thi La <julin@mines.edu>
+Date:   Tue Nov 24 12:20:52 2015 -0700
+
+    added new floor one file, with const size 25x25
+
+commit fb05218bf819e820f9a1d718d732a534bb2414c0
+Author: GuiltyKing12 <bher@mines.edu>
+Date:   Tue Nov 24 12:18:22 2015 -0700
+
+    Began modifying the failing tests for player
+
+commit 7a5ddc3f966868a34aaf1e7071e8ce979f513044
+Author: GuiltyKing12 <bher@mines.edu>
+Date:   Tue Nov 24 12:11:14 2015 -0700
+
+    Added tests to GameEngine (got rid of testTimer for consideration of Lives instead, Added some new functions to GameBoard and GameEngine for testing
+
+commit 683801b01ce5a01f5f20a96365b600a731a4b4cf
+Merge: 843528c 4a9c9b2
+Author: Junquan Lin & Thi La <julin@mines.edu>
+Date:   Tue Nov 24 11:12:10 2015 -0700
+
+    Merge branch 'master' of https://github.com/GuiltyKing12/Final-Project
+
+commit 843528cdc6b4968af918670f35b0854b9864aa68
+Author: Junquan Lin & Thi La <julin@mines.edu>
+Date:   Tue Nov 24 11:11:51 2015 -0700
+
+    weird commit
+
+commit 4a9c9b24a07ecd42c98fecedf6da59d5e4de25e8
+Author: GuiltyKing12 <bher@mines.edu>
+Date:   Tue Nov 24 11:10:23 2015 -0700
+
+    Added components to Fraction class
+
+commit ab3ac6452600f000fef10594b30bce490d3e127a
+Author: John Spielvogel <jspielvo@mymail.mines.edu>
+Date:   Tue Nov 24 09:36:33 2015 -0700
+
+    Edited comments
+
+commit 0208c3786458a4a44de7bbfbfc6df8d1eec35062
+Author: John Spielvogel <jspielvo@mymail.mines.edu>
+Date:   Tue Nov 24 09:31:32 2015 -0700
+
+    CHANGES:
+    	- Added failing tests for BoardTests class
+    		- Needs testInitializeBoard() to be finished
+    	- Added failing test method stubs for PlayerTests class
+    
+    TODO:
+    	- Need to finish implementing failing tests
+    		- PlayerTests, GameEngineTests, QuestionBankTests
+
+commit 2b8621b04d03af1612870abf2ea2c519b2b08150
+Author: John Spielvogel <jspielvo@mymail.mines.edu>
+Date:   Tue Nov 24 08:32:00 2015 -0700
+
+    CHANGES:
+    	- Added failing test method stubs (based on Product Description)
+    		- May need to add more tests as we see needed
+    
+    TODO:
+    	- Add code to each test method stub.
+
+commit d345cba965ecc433bcfd88286bdc27ff6e6f31fd
+Author: John Spielvogel <jspielvo@mymail.mines.edu>
+Date:   Tue Nov 24 08:18:06 2015 -0700
+
+    CHANGES:
+    	- Added all class stubs (based off of UML diagram)
+    	- Added stubs for Test Classes (based off of Project Description)
+    
+    TODO:
+    	- Add failing tests
+
+commit dfc6875a05cfd30095bf601dd6762a415b013f74
+Author: KitoAcosta <jacosta@mymail.mines.edu>
+Date:   Sun Nov 22 19:25:55 2015 -0700
+
+    Added a little more to the floorHigh.xlsx
+
+commit 5b5b5305cdc8e1aaa43775408791d29dd65d4783
+Author: Junquan Lin & Thi La <julin@mines.edu>
+Date:   Fri Nov 20 17:28:00 2015 -0700
+
+    edited the screen sample powerpoint, ready for submission
+
+commit d013da77c3695d3aac639f2b7c75e2fd19d6f83f
+Merge: d5cea9d 4a8d42b
+Author: John Spielvogel <jspielvo@mymail.mines.edu>
+Date:   Fri Nov 20 14:53:03 2015 -0700
+
+    Merge branch 'master' of https://github.com/GuiltyKing12/Final-Project
+
+commit d5cea9d3f3028dd48aab91b32894599e8b869f17
+Author: John Spielvogel <jspielvo@mymail.mines.edu>
+Date:   Fri Nov 20 14:52:27 2015 -0700
+
+    updated final project description
+
+commit 4a8d42bea5cc1b5d289390c74777aa2b27228dd3
+Author: GuiltyKing12 <bher@mines.edu>
+Date:   Fri Nov 20 14:47:57 2015 -0700
+
+    Added the UML file for the game
+
+commit 78d9064b291b9603b1a68cb9600cc2ce015112a9
+Author: KitoAcosta <jacosta@mymail.mines.edu>
+Date:   Thu Nov 19 12:22:27 2015 -0700
+
+    Added a high floor file.
+
+commit debed4277f7be3728230b6f9bd55a7f3155190f6
+Author: GuiltyKing12 <bher@mines.edu>
+Date:   Thu Nov 19 12:16:11 2015 -0700
+
+    Added the UML for project
+
+commit 1d48efc67d2e976096d88faa7cc4b8780193fe11
+Merge: ffa740a 0a71474
+Author: jspielvo <jspielvo@mymail.mines.edu>
+Date:   Thu Nov 19 12:11:44 2015 -0700
+
+    Merge branch 'master' of https://github.com/GuiltyKing12/Final-Project
+
+commit ffa740a64de691f0195949e61a624f1cea3f2143
+Author: jspielvo <jspielvo@mymail.mines.edu>
+Date:   Thu Nov 19 12:11:20 2015 -0700
+
+    Added project description
+
+commit 0a714742b13b25e5b2799916accdbb9c0357b0cd
+Author: Junquan Lin & Thi La <julin@mines.edu>
+Date:   Thu Nov 19 12:08:33 2015 -0700
+
+    added screen sample and floor one file
+
+commit 0811f948c642be79b77f4b6f7adb7ec7dc42d5ba
+Author: jspielvo <jspielvo@mymail.mines.edu>
+Date:   Thu Nov 19 11:22:20 2015 -0700
+
+    Initialized Project and added README.txt
+
+commit 66a2786134e2ed08bec95c0f4eb88df3bd3769c7
+Author: Brandon Her <bher@mines.edu>
+Date:   Thu Nov 19 11:14:27 2015 -0700
+
+    Initial commit
