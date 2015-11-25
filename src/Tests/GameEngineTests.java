@@ -11,10 +11,10 @@ import Game.GameBoard;
 import Game.GameEngine;
 
 public class GameEngineTests {
-	GameEngine engine;
+	static GameEngine engine;
 	
 	@BeforeClass
-	public void setUp() {
+	public static void setUp() {
 		engine = new GameEngine();
 		
 	}
@@ -29,8 +29,8 @@ public class GameEngineTests {
 		assertEquals("CSV file 2", files.get(1));
 		assertEquals("CSV file 3", files.get(2));
 		// Tests to see if board has correct dimensions
-		assertEquals(25, board.getDimensions().x);
-		assertEquals(25, board.getDimensions().y);
+		assertEquals(25, (int)(board.getDimensions().x));
+		assertEquals(25, (int)(board.getDimensions().y));
 	}
 	
 	// Test advancing to next level

@@ -23,4 +23,8 @@ public class QuestionBank {
 	public String getSoluton() {
 		return solution.get(0);
 	}
+
+	public boolean evaluateGuess() {
+		return false;
+	}
 }

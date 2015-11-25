@@ -24,7 +24,7 @@ public class BoardCell {
 	}
 
 	public void setPosition(Vec2d position) {
-		this.position = position;
+		//this.position = position;
 	}
 	
 	public boolean getIsSolutionCell() {
@@ -32,7 +32,7 @@ public class BoardCell {
 	}
 	
 	public void setSolutionCell(boolean isSolutionCell) {
-		this.isSolutionCell = isSolutionCell;
+		//this.isSolutionCell = isSolutionCell;
 	}
 
 }

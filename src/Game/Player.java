@@ -45,10 +45,10 @@ public class Player {
 	}
 
 	public void setPosition(Vec2d position) {
-		this.position = position;
+		//this.position = position;
 	}
 	
 	public void move(Vec2d moveLocation) {
-		this.position = moveLocation;
+		//this.position = moveLocation;
 	}
 }

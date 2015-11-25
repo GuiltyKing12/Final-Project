@@ -8,10 +8,10 @@ import org.junit.Test;
 import Game.QuestionBank;
 
 public class QuestionBankTests {
-	QuestionBank questionBank;
+	static QuestionBank questionBank;
 	
 	@BeforeClass
-	public void setUp() {
+	public static void setUp() {
 		questionBank = new QuestionBank();
 	}
 	
@@ -27,16 +27,15 @@ public class QuestionBankTests {
 		fail("Not yet implemented");
 	}
 
-	// Test to ensure questions match up with correct answers
+	// Test to ensure questions mare solvable by correct answers
 	@Test
 	public void testQuestionsMatchAnswers() {
 		fail("Not yet implemented");
 	}
 	
-	// Test evaluateGuess()
-	// evaluateGuess() <- Imaginary function that should check whether solution is correct/incorrect.
+	// Test evaluateGuess(), check whether solution is correct/incorrect.
 	@Test
 	public void testEvaluateGuess() {
-		fail("Not yet implemented");
+		assertTrue(questionBank.evaluateGuess());
 	}
 }

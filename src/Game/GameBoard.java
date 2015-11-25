@@ -14,10 +14,9 @@ public class GameBoard {
 	
 	public GameBoard() {
 		// TODO: implementation
-		this.dimensions.x = 0;
-		this.dimensions.y = 0;
+		this.dimensions = null;
 		this.boardConfigFile = null;
-		this.setBoard(null);
+		this.board = null;
 		this.solutionCells = null;
 	}
 	
@@ -48,15 +47,15 @@ public class GameBoard {
 	}
 	
 	public void setSolutionCells(List<BoardCell> solutionCells) {
-		this.solutionCells = solutionCells;
+		//this.solutionCells = solutionCells;
 	}
 	
 	public void setDimensions(Vec2d dimensions) {
-		this.dimensions = dimensions;
+		//this.dimensions = dimensions;
 	}
 
 	public void setBoard(BoardCell[][] board) {
-		this.board = board;
+		//this.board = board;
 	}
 	
 	public void startLevel() {

@@ -8,10 +8,10 @@ import Game.BoardCell;
 import Game.GameBoard;
 
 public class BoardTests {
-	GameBoard board;
+	static GameBoard board;
 	
 	@BeforeClass
-	public void setUp() {
+	public static void setUp() {
 		board = new GameBoard();
 	}
 
@@ -20,6 +20,7 @@ public class BoardTests {
 	public void testInitializeBoard() {
 		// TODO: Write test that checks certain cell locations for specifics (player location, item location, etc)
 		//       to ensure board is being loaded in properly.
+		fail("Not implemented yet");
 	}
 	
 	// Test board dimensions
@@ -28,8 +29,8 @@ public class BoardTests {
 		int numRows = 10;					// Change value to whatever we decide on
 		int numCols = 10;					// Change value to whatever we decide on
 		
-		assertTrue(numRows == board.getDimensions().x);
-		assertTrue(numCols == board.getDimensions().y);
+		assertEquals(numRows, (int)(board.getDimensions().x));
+		assertEquals(numCols, (int)(board.getDimensions().y));
 	}
 	
 	// Test potential solution/answer cell locations
