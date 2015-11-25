@@ -36,8 +36,15 @@ public class GameEngineTests {
 	// Test advancing to next level
 	@Test
 	public void initializeGame() {
-		// need to set score to whatever we decide is needed 
+		// Set score so can advance
+		engine.getBoard().getPlayer().setScore(5);
+		assertEquals(5, engine.getBoard().getPlayer().getScore());
+		
+		// Level should now advance and score reset to 0
 		engine.advanceNextLevel();
+		assertEquals(0, engine.getBoard().getPlayer().getScore());
+		
+		
 	}
 
 	
