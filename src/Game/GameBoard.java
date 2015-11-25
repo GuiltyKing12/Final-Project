@@ -10,6 +10,7 @@ public class GameBoard {
 	private ArrayList<String> boardConfigFile;
 	private BoardCell[][] board;
 	private List<BoardCell> solutionCells;
+	private Player player;
 	
 	public GameBoard() {
 		// TODO: implementation
@@ -42,8 +43,8 @@ public class GameBoard {
 		return board;
 	}
 	
-	public int getScore() {
-		return score;
+	public Player getPlayer() {
+		return player;
 	}
 	
 	public void setSolutionCells(List<BoardCell> solutionCells) {
