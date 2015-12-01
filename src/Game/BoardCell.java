@@ -1,7 +1,5 @@
 package Game;
 
-import com.sun.javafx.geom.Vec2d;
-
 public class BoardCell {
 	private int row;					// Coordinate on the board
 	private int col;
