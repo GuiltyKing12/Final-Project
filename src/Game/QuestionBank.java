@@ -8,16 +8,27 @@ public class QuestionBank {
 	// Not sure if we want a string solution, might be better for Fraction solution
 	// We might be able to do map in this case
 
-	private ArrayList<String> question;
+	private ArrayList<Question> questions;
 	private ArrayList<String> solution;
 	
 	public QuestionBank() {
-		question.add("Test");
-		solution.add("test");
+		initialize();
 	}
 	
+	private void initialize() {
+		questions = new ArrayList<Question>();
+		solution = new ArrayList<String>();
+		
+		initializeQuestionBank();
+	}
+	
+	private void initializeQuestionBank() {
+		Question testQ = new Question("testing first fraction 1 and second fraction 2", new Fraction(1, 2), new Fraction(2, 1));
+		System.out.println(testQ.toString());
+	}
+
 	public String getQuestion() {
-		return question.get(0);
+		return questions.get(0).toString();
 	}
 	
 	public String getSoluton() {
@@ -27,4 +38,6 @@ public class QuestionBank {
 	public boolean evaluateGuess() {
 		return false;
 	}
+	
+	
 }
