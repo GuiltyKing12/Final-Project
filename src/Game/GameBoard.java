@@ -124,8 +124,6 @@ public class GameBoard {
 				}
 			}
 		}
-		
-		printSolutionCellList();
 	}
 	
 	public void startLevel() {
@@ -133,7 +131,6 @@ public class GameBoard {
 		// uses the boardConfigFile arrayList -> randomly choose one
 		Random rand = new Random();
 		initializeLevel(boardConfigFile.get(rand.nextInt(3)));
-		
 	}
 	
 	public List<BoardCell> getSolutionCells() {
