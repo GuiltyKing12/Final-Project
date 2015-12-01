@@ -20,6 +20,10 @@ public class GameEngine {
 		
 	}
 	
+	public static void main(String[] args) {
+		GameEngine game = new GameEngine();
+	}
+	
 	/*public GameDisplay getDisplay() {
 	 * 
 	 * }

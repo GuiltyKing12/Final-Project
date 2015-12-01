@@ -9,101 +9,103 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Vector;
+import java.util.stream.Stream;
 
-import com.braul.clue.game.BadConfigFormatException;
-import com.braul.clue.game.BoardCell;
-import com.braul.clue.game.DoorDirection;
+//import com.braul.clue.game.BadConfigFormatException;
+//import com.braul.clue.game.BoardCell;
+//import com.braul.clue.game.DoorDirection;
 import com.sun.javafx.geom.Vec2d;
 
 public class GameBoard {
-	private Vec2d dimensions;
+	private int rows = 25;
+	private int cols = 25;
 	private ArrayList<String> boardConfigFile;
+	private String legendConfigFile;
 	private BoardCell[][] board;
 	private Map<Character, String> legend;
 	private List<BoardCell> solutionCells;
 	private Player player;
 	
 	public GameBoard() {
-		// TODO: implementation
-		this.dimensions = null;
-		this.boardConfigFile = null;
-		this.board = null;
-		this.solutionCells = null;
+		initialize();
 	}
 	
 	public void initialize() {
-		// will call all the functions below
+		this.boardConfigFile = new ArrayList<String>();
+		this.solutionCells = new ArrayList<BoardCell>();
+		this.legend = new HashMap<Character, String>();
+		this.board = new BoardCell[rows][cols];
+		
+		initializeConfigFiles();
+		initializeLegend();
+		initializeLevel("floorEasy.csv");
+		initializeSolutionCellList();
 	}
 	
-	public void loadBoardFromConfigFile() {
-		boardConfigFile.add("CSV file 1");
-		boardConfigFile.add("CSV file 2");
-		boardConfigFile.add("CSV file 3");
+	public void initializeConfigFiles() {
+		boardConfigFile.add("floorEasy.csv");
+		boardConfigFile.add("floorMedium.csv");
+		boardConfigFile.add("floorHard.csv");		
+		this.legendConfigFile = "Legend.txt";
 	}
 	
-	public List<BoardCell> getSolutionCells() {
-		return solutionCells;
-	}
-	
-	public Vec2d getDimensions() {
-		return dimensions;
-	}
+	private void initializeLegend() {
+		try {
+			FileReader fin = new FileReader(legendConfigFile);
+			BufferedReader br = new BufferedReader(fin);
+			
+			String line = "";
 
-	public BoardCell[][] getBoard() {
-		return board;
-	}
-	
-	public Player getPlayer() {
-		return player;
-	}
-	
-	public void setSolutionCells(List<BoardCell> solutionCells) {
-		//this.solutionCells = solutionCells;
-	}
-	
-	public void setDimensions(Vec2d dimensions) {
-		//this.dimensions = dimensions;
-	}
-
-	public void setBoard(BoardCell[][] board) {
-		//this.board = board;
-	}
-	
-	public void startLevel() {
-		// will draw the board
-		// uses the boardConfigFile arrayList -> randomly choose one
-		Random rand = new Random();
-		initializeLevel(boardConfigFile.get(rand.nextInt(3)));
+			while((line = br.readLine()) != null){
+				String[] parts = line.split(",");
+				
+				legend.put(parts[0].charAt(0), parts[1]);
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (NullPointerException e){
+			e.printStackTrace();
+		}
 		
 	}
 	
 	public void initializeLevel(String configFile) {
-		board = new BoardCell[50][50];
-		legend = new HashMap<Character, String>;
 		try {
 			FileReader filo = new FileReader(configFile);
 			BufferedReader br = new BufferedReader(filo);
+
 			String line = "";
 			int rowCounter = 0;
 			int columnCheck = -1;
+			
 			while((line = br.readLine()) != null){
 				String[] parts = line.split(",");
+				
 				if(columnCheck != -1){
 					if(columnCheck != parts.length){
 						br.close();
 					}
 				}
+				
 				columnCheck = parts.length;
+				
 				for(int i = 0; i < parts.length; i++){
 					char c = parts[i].charAt(0);
 					if(!legend.containsKey(c)){
 						br.close();
 					}
+					else {
+						board[rowCounter][i] = new BoardCell(c, rowCounter, i);
+					}
 				}
 				rowCounter++;
 			}
-			dimensions.x = rowCounter;
-			dimensions.y = columnCheck;
+			rows = rowCounter;
+			cols = columnCheck;
 			br.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -114,9 +116,85 @@ public class GameBoard {
 		}
 	}
 	
-	// These are methods to use for the tests
+	private void initializeSolutionCellList() {
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				if (board[i][j].getIsSolutionCell()) {
+					solutionCells.add(board[i][j]);
+				}
+			}
+		}
+		
+		printSolutionCellList();
+	}
+	
+	public void startLevel() {
+		// will draw the board
+		// uses the boardConfigFile arrayList -> randomly choose one
+		Random rand = new Random();
+		initializeLevel(boardConfigFile.get(rand.nextInt(3)));
+		
+	}
+	
+	public List<BoardCell> getSolutionCells() {
+		return solutionCells;
+	}
+	
+	public int getRows() {
+		return rows;
+	}
+	
+	public int getCols() {
+		return cols;
+	}
+	
+	public BoardCell[][] getBoard() {
+		return board;
+	}
+	
+	public Player getPlayer() {
+		return player;
+	}
+	
+	public void setSolutionCells(List<BoardCell> solutionCells) {
+		this.solutionCells = solutionCells;
+	}
+	
+	public void setBoard(BoardCell[][] board) {
+		this.board = board;
+	}
+
+	// DEBUG METHODS: used for verifying correctness
+	public void printBoard() {
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				System.out.print(board[i][j].getInitial() + " ");
+			}
+			System.out.println();
+		}
+	}
+	
+	public void printLegend() {
+		for (char key : legend.keySet()) {
+			System.out.println("( " + key + ", " + legend.get(key) + " )");
+		}
+	}
+	
+	public void printSolutionCellList() {
+		for (int i = 0; i < solutionCells.size(); i++) {
+			
+			System.out.print("Location: " + "( " + solutionCells.get(i).getRow() + ", " + solutionCells.get(i).getCol() + " )\t");
+			System.out.println("Initial: " + solutionCells.get(i).getInitial());
+		}
+	}
+	
+	// TEST METHODS: used for tests
 	public ArrayList<String> getLoadFile() {
 		return boardConfigFile;
+	}
+
+	public BoardCell getCellAt(int i, int j) {
+		return board[i][j];
 	}
 	
 }

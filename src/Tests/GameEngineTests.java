@@ -25,12 +25,12 @@ public class GameEngineTests {
 		GameBoard board = engine.getBoard();
 		// Tests to see if board correctly sets up CSV files
 		ArrayList<String> files = board.getLoadFile();
-		assertEquals("CSV file 1", files.get(0));
-		assertEquals("CSV file 2", files.get(1));
-		assertEquals("CSV file 3", files.get(2));
+		assertEquals("floorEasy.csv", files.get(0));
+		assertEquals("floorMedium.csv", files.get(1));
+		assertEquals("floorHard.csv", files.get(2));
 		// Tests to see if board has correct dimensions
-		assertEquals(25, (int)(board.getDimensions().x));
-		assertEquals(25, (int)(board.getDimensions().y));
+		assertEquals(25, board.getRows());
+		assertEquals(25, board.getCols());
 	}
 	
 	// Test advancing to next level
