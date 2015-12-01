@@ -10,12 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Vector;
-import java.util.stream.Stream;
-
-//import com.braul.clue.game.BadConfigFormatException;
-//import com.braul.clue.game.BoardCell;
-//import com.braul.clue.game.DoorDirection;
-import com.sun.javafx.geom.Vec2d;
 
 public class GameBoard {
 	private int rows = 25;
@@ -124,8 +118,6 @@ public class GameBoard {
 				}
 			}
 		}
-		
-		printSolutionCellList();
 	}
 	
 	public void startLevel() {
@@ -133,7 +125,6 @@ public class GameBoard {
 		// uses the boardConfigFile arrayList -> randomly choose one
 		Random rand = new Random();
 		initializeLevel(boardConfigFile.get(rand.nextInt(3)));
-		
 	}
 	
 	public List<BoardCell> getSolutionCells() {
