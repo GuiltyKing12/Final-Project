@@ -36,29 +36,21 @@ public class QuestionBank {
 	}
 	
 	public Fraction addSolution(int numerator1,int denominator1,int numerator2,int denominator2){
-		
-		int newNumerator;
-		int newDenominator;
-		newNumerator=numerator1*denominator2+denominator1*numerator2;
-		newDenominator=denominator1*denominator2;
+		int newNumerator=numerator1*denominator2+denominator1*numerator2;
+		int newDenominator=denominator1*denominator2;
 		Fraction temp = new Fraction (newNumerator,newDenominator);
 		return temp;
 	}
 	
 	public Fraction minusSolution(int numerator1,int denominator1,int numerator2,int denominator2){
-		int newNumerator;
-		int newDenominator;
-		newNumerator=numerator1*denominator2-denominator1*numerator2;
-		newDenominator=denominator1*denominator2;
+		int newNumerator=numerator1*denominator2-denominator1*numerator2;
+		int newDenominator=denominator1*denominator2;
 		Fraction temp = new Fraction (newNumerator,newDenominator);
 		return temp;
 	}
 	
 	public Fraction multiplySolution(int numerator1,int denominator1,int oneInt){
-		int newNumerator;
-		
-		newNumerator=numerator1*oneInt;
-		
+		int newNumerator=numerator1*oneInt;
 		Fraction temp = new Fraction (newNumerator,denominator1);
 		return temp;
 	}
