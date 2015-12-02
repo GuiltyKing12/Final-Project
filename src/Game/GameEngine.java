@@ -1,15 +1,48 @@
 package Game;
 
-public class GameEngine {
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+
+public class GameEngine extends JFrame {
+	private final static int WIDTH = 500;
+	private final static int LENGTH = 500;
+	
 	private GameBoard board;
-	//private GameDisplay display;
+	private DisplayGUI display;
 	
 	public GameEngine() {
 		board = new GameBoard();
-		//display = new GameDisplay();
-		
+		display = new DisplayGUI(board);
 		board.initialize();
-		//display.setup();
+		
+		setSize(WIDTH, LENGTH);
+		//add(board);
+		add(display);
+		setTitle("Maze Runner");
+		setUpMenuBar();
+
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+	}
+	
+	public void setUpMenuBar() {
+		JMenu menu = new JMenu("File");
+		JMenuItem exit = new JMenuItem("Exit");
+		
+		exit.addActionListener(new ExitListener());
+		menu.add(exit);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.add(menu);
+		add(menuBar, BorderLayout.NORTH);
 	}
 	
 	public GameBoard getBoard() {
@@ -20,12 +53,13 @@ public class GameEngine {
 		
 	}
 	
+	private class ExitListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			System.exit(0);
+		}
+	}
+	
 	public static void main(String[] args) {
 		GameEngine game = new GameEngine();
 	}
-	
-	/*public GameDisplay getDisplay() {
-	 * 
-	 * }
-	 */
 }

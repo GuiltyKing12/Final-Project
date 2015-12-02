@@ -17,7 +17,7 @@ public class Player {
 		this.position = null;
 		this.color = null;
 		this.score = 0;
-		this.lives = 0;
+		this.lives = 3;
 	}
 
 	public Vec2d getPosition() {

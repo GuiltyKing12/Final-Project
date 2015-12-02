@@ -22,6 +22,7 @@ public class GameBoard {
 	private Player player;
 	
 	public GameBoard() {
+		player = new Player();
 		initialize();
 	}
 	
