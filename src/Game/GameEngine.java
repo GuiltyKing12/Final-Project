@@ -30,7 +30,7 @@ public class GameEngine extends JFrame {
 	public void initialize() {
 		gameLevel = 0;
 		board = new GameBoard();
-
+		questionBank = new QuestionBank(gameLevel);
 		display = new DisplayGUI(board);
 		board.initialize();
 		
@@ -55,8 +55,6 @@ public class GameEngine extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.add(menu);
 		add(menuBar, BorderLayout.NORTH);
-
-		questionBank = new QuestionBank(gameLevel);
 		
 		board.initialize();
 		//display = new GameDisplay();

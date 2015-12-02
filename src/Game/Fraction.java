@@ -25,6 +25,18 @@ public class Fraction {
 		return value;
 		
 	}
+	
+	public boolean equals(Fraction fraction) {
+		return this.numerator == fraction.getNumerator() && this.denominator == fraction.getDenominator();
+	}
+	
+	public boolean isGreaterThan(Fraction fraction) {
+		return ((double) this.numerator / this.denominator) > ((double) fraction.getNumerator() / fraction.getDenominator());
+	}
+	
+	public boolean isLessThan(Fraction fraction) {
+		return ((double) this.numerator / this.denominator) < ((double) fraction.getNumerator() / fraction.getDenominator());
+	}
 
 	@Override
 	public String toString() {
