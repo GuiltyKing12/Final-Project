@@ -9,10 +9,12 @@ import Game.QuestionBank;
 
 public class QuestionBankTests {
 	static QuestionBank questionBank;
+	static int testLevel;
 	
 	@BeforeClass
 	public static void setUp() {
-		questionBank = new QuestionBank();
+		testLevel = 0;
+		questionBank = new QuestionBank(testLevel);
 	}
 	
 	// Test initialization of questionBank

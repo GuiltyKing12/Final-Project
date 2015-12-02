@@ -15,10 +15,22 @@ public class GameEngine extends JFrame {
 	private final static int LENGTH = 500;
 	
 	private GameBoard board;
+
 	private DisplayGUI display;
+
+	private QuestionBank questionBank;
+	private int gameLevel;
+	//private GameDisplay display;
+
 	
 	public GameEngine() {
+		initialize();
+	}
+	
+	public void initialize() {
+		gameLevel = 0;
 		board = new GameBoard();
+
 		display = new DisplayGUI(board);
 		board.initialize();
 		
@@ -43,6 +55,13 @@ public class GameEngine extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.add(menu);
 		add(menuBar, BorderLayout.NORTH);
+
+		questionBank = new QuestionBank(gameLevel);
+		
+		board.initialize();
+		//display = new GameDisplay();
+		//display.setup();
+
 	}
 	
 	public GameBoard getBoard() {
