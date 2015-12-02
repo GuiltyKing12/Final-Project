@@ -1,7 +1,10 @@
 package Game;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -11,47 +14,55 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 public class DisplayGUI extends JPanel{
-	private final static int WIDTH = 250;
-	private final static int LENGTH = 250;
 	private JTextArea question;
 	private GameBoard board;
+	private JPanel mainPanel;
 	
 	public DisplayGUI(GameBoard board) {
+		setLayout(new FlowLayout());
+		setPreferredSize(new Dimension(600, 500));
 		this.board = board;
+		
+		mainPanel = new JPanel();
 		setPlayerInfo();
 		setPlayerControls();
+		add(mainPanel);
 		setQuestionDisplay();
-		setLivesDisplay();
 	}
 	
 	public void setPlayerInfo() {
-		/*JTextField playerName = new JTextField();
-		JTextField playerScore = new JTextField();
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(2, 2, 5, 5));
+		JTextField playerName = new JTextField(15);
+		JTextField playerScore = new JTextField(10);
+		JTextField test = new JTextField();
 		
 		playerName.setText(board.getPlayer().getName());
-		add(playerName);
+		playerName.setEditable(false);
+		panel.add(playerName);
+		
+		panel.add(new JPanel());
 		
 		playerScore.setBorder(new TitledBorder(new EtchedBorder(), "Score"));
 		String score = Integer.toString(board.getPlayer().getScore());
 		playerScore.setText(score);
-		add(playerScore);*/
+		playerScore.setEditable(false);
+		panel.add(playerScore);
+		
+		test.setText("These are Lives");
+		test.setBorder(new TitledBorder(new EtchedBorder(), "Lives"));
+		test.setEditable(false);
+		panel.add(test);
+		mainPanel.add(panel);
 		
 	}
 	
 	public void setQuestionDisplay() {
-		question = new JTextArea();
+		question = new JTextArea(5,50);
 		question.setText("This is a question!!!");
 		question.setBorder(new TitledBorder(new EtchedBorder(), "Question"));
 		question.setEditable(false);
 		add(question);
-	}
-	
-	public void setLivesDisplay() {
-		JTextField test = new JTextField();
-		test.setText("These are Lives");
-		test.setBorder(new TitledBorder(new EtchedBorder(), "Lives"));
-		test.setEditable(false);
-		add(test);
 	}
 	
 	public void setPlayerControls() {
@@ -67,7 +78,7 @@ public class DisplayGUI extends JPanel{
 		playerControl.add(left, BorderLayout.WEST);
 		playerControl.add(right, BorderLayout.EAST);
 		
-		add(playerControl);
+		mainPanel.add(playerControl);
 	}
 
 }

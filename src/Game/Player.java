@@ -37,18 +37,18 @@ public class Player {
 	}
 	
 	public void setName(String name) {
-		//this.name = name;
+		this.name = name;
 	}
 	
 	public void setScore(int score) {
-		//this.score = score;
+		this.score = score;
 	}
 
 	public void setPosition(Vec2d position) {
-		//this.position = position;
+		this.position = position;
 	}
 	
 	public void move(Vec2d moveLocation) {
-		//this.position = moveLocation;
+		this.position = moveLocation;
 	}
 }

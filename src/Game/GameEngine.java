@@ -1,6 +1,8 @@
 package Game;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,8 +13,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 public class GameEngine extends JFrame {
-	private final static int WIDTH = 500;
-	private final static int LENGTH = 500;
+	private final static int WIDTH = 750;
+	private final static int LENGTH = 1000;
 	
 	private GameBoard board;
 
@@ -20,14 +22,18 @@ public class GameEngine extends JFrame {
 
 	private QuestionBank questionBank;
 	private int gameLevel;
-	//private GameDisplay display;
-
 	
 	public GameEngine() {
 		initialize();
 	}
 	
 	public void initialize() {
+		setTitle("Maze Runner");
+		setUpMenuBar();
+		JPanel panel = new JPanel();
+		panel.setPreferredSize(new Dimension(WIDTH, LENGTH / 2));
+		panel.setLayout(new GridLayout(2, 1));
+		
 		gameLevel = 0;
 		board = new GameBoard();
 
@@ -35,12 +41,11 @@ public class GameEngine extends JFrame {
 		board.initialize();
 		
 		setSize(WIDTH, LENGTH);
-		//add(board);
-		add(display);
-		setTitle("Maze Runner");
-		setUpMenuBar();
-
+		panel.add(board);
+		panel.add(display);
+		add(panel, BorderLayout.CENTER);
 		
+		pack();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 	}
@@ -57,11 +62,6 @@ public class GameEngine extends JFrame {
 		add(menuBar, BorderLayout.NORTH);
 
 		questionBank = new QuestionBank(gameLevel);
-		
-		board.initialize();
-		//display = new GameDisplay();
-		//display.setup();
-
 	}
 	
 	public GameBoard getBoard() {

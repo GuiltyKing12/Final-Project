@@ -11,7 +11,9 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Vector;
 
-public class GameBoard {
+import javax.swing.JPanel;
+
+public class GameBoard extends JPanel {
 	private int rows = 25;
 	private int cols = 25;
 	private ArrayList<String> boardConfigFile;
