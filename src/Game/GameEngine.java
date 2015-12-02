@@ -36,7 +36,7 @@ public class GameEngine extends JFrame {
 		
 		gameLevel = 0;
 		board = new GameBoard();
-
+		questionBank = new QuestionBank(gameLevel);
 		display = new DisplayGUI(board);
 		board.initialize();
 		
@@ -62,6 +62,7 @@ public class GameEngine extends JFrame {
 		add(menuBar, BorderLayout.NORTH);
 
 		questionBank = new QuestionBank(gameLevel);
+		
 	}
 	
 	public GameBoard getBoard() {
