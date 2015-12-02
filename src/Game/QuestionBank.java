@@ -1,6 +1,7 @@
 package Game;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class QuestionBank {
 	// So Daniel and Kito want to use a random question thing so right now assuming
@@ -10,10 +11,12 @@ public class QuestionBank {
 
 	private ArrayList<Question> questions;
 	private ArrayList<String> solution;
+	private int currentLevel;
+	Random rand = new Random();
 	
-	public QuestionBank() {
+	public QuestionBank(int level) {
+		this.currentLevel = level;
 		initialize();
-
 	}
 	
 	private void initialize() {
@@ -21,29 +24,14 @@ public class QuestionBank {
 		solution = new ArrayList<String>();
 		
 		initializeQuestionBank();
+		printQuestionBankContents();
 	}
 	
 	private void initializeQuestionBank() {
-		Question testQ = new Question("testing first fraction 1 and second fraction 2", new Fraction(1, 2), new Fraction(2, 1));
-		System.out.println(testQ.toString());
-	}
-
-	public String getQuestion() {
-		return questions.get(0).toString();
-	}
-	
-	public String getSoluton() {
-		return solution.get(0).toString();
-	}
-
-	public boolean evaluateGuess() {
-		return false;
-	}
-
-	public void generateQuestions(){
-		questions.clear();
-		solution.clear();
-		//TODO: call solution and add in to arraylist
+		Question testQ1 = new Question("{FRACTION1} - {FRACTION2} = ", getRandomFraction(currentLevel), getRandomFraction(currentLevel));
+		Question testQ2 = new Question("{FRACTION1} + {FRACTION2} = ", getRandomFraction(currentLevel), getRandomFraction(currentLevel));
+		questions.add(testQ1);
+		questions.add(testQ2);		
 	}
 	
 	public Fraction addSolution(int numerator1,int denominator1,int numerator2,int denominator2){
@@ -66,5 +54,40 @@ public class QuestionBank {
 		return temp;
 	}
 	
-	//no need for divisionSolution
+	public Question getRandomQuestion() {
+		return questions.get(rand.nextInt(questions.size()));
+	}
+	
+	public Fraction getRandomFraction(int level) {
+		int initial = 4;
+		int levelScaling = level * 2;
+		int randNumerator = rand.nextInt(initial + levelScaling) + 1;
+		int randDenominator = rand.nextInt(initial + levelScaling) + 1;
+		return new Fraction(randNumerator, randDenominator);
+	}
+	
+	public void generateQuestions(){
+		questions.clear();
+		solution.clear();
+		//TODO: call solution and add in to arraylist
+	}
+
+	public String getQuestion() {
+		return questions.get(0).toString();
+	}
+	
+	public String getSoluton() {
+		return solution.get(0).toString();
+	}
+	
+	public boolean evaluateGuess() {
+		return false;
+	}
+	
+	// METHODS FOR TESTING PURPOSES
+	public void printQuestionBankContents() {
+		for (Question q : questions) {
+			System.out.println(q);
+		}
+	}
 }

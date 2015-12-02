@@ -16,10 +16,10 @@ public class Question {
 	private void formatText() {
 		int posOfFirstFraction = rawText.indexOf('1');
 		int posOfSecondFraction = rawText.indexOf('2');
-		String firstFractionText = " " + fraction1.getNumerator() + "/" + fraction1.getDenominator() + " ";
-		String secondFractionText = " " + fraction2.getNumerator() + "/" + fraction2.getDenominator() + " ";
-		rawText = rawText.replace("1", firstFractionText);
-		rawText = rawText.replace("2", secondFractionText);
+		String firstFractionText = fraction1.getNumerator() + "/" + fraction1.getDenominator();
+		String secondFractionText = fraction2.getNumerator() + "/" + fraction2.getDenominator();
+		rawText = rawText.replace("{FRACTION1}", firstFractionText);
+		rawText = rawText.replace("{FRACTION2}", secondFractionText);
 		finalText = rawText;
 	}
 

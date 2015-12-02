@@ -2,13 +2,21 @@ package Game;
 
 public class GameEngine {
 	private GameBoard board;
+	private QuestionBank questionBank;
+	private int gameLevel;
 	//private GameDisplay display;
 	
 	public GameEngine() {
+		initialize();
+	}
+	
+	public void initialize() {
+		gameLevel = 0;
 		board = new GameBoard();
-		//display = new GameDisplay();
+		questionBank = new QuestionBank(gameLevel);
 		
 		board.initialize();
+		//display = new GameDisplay();
 		//display.setup();
 	}
 	
