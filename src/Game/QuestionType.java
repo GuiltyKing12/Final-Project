@@ -1,5 +1,5 @@
 package Game;
 
 public enum QuestionType {
-	ARITHMETIC, WORD, NONE
+	SUBTRACT, ADD, SUBADD, ADDSUB, MULTIPLY, LESS, GREATER, EQUAL, WORD, NONE;
 }
