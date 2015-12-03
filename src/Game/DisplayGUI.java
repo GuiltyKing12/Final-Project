@@ -62,6 +62,8 @@ public class DisplayGUI extends JPanel{
 		question.setText("This is a question!!!");
 		question.setBorder(new TitledBorder(new EtchedBorder(), "Question"));
 		question.setEditable(false);
+		question.setLineWrap(true);
+		question.setWrapStyleWord(true);
 		add(question);
 	}
 	
