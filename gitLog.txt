@@ -1,3 +1,141 @@
+commit ba22888542a19b399d9596d7a9547586ed0165a1
+Merge: 4be75fd 641ed50
+Author: GuiltyKing12 <bher@mines.edu>
+Date:   Wed Dec 2 13:30:01 2015 -0700
+
+    Fixed some more merging errors
+
+commit 4be75fdabfbea05ff2c45b3fe3953aa653155bad
+Author: GuiltyKing12 <bher@mines.edu>
+Date:   Wed Dec 2 13:28:16 2015 -0700
+
+    Adjusted the Frame to fit the GUI.  Just need to get the board drawn for some more adjustments.
+
+commit 641ed508ab10b9f06559da582bac1dc4612e2a63
+Author: John Spielvogel <jspielvo@mymail.mines.edu>
+Date:   Wed Dec 2 11:04:28 2015 -0700
+
+    CHANGES:
+    	- Made 8 arithmetic questions and 5 word questions
+    		- Fractions used in questions are randomly generated
+    		- Stored in questions arrayList
+    	- Fraction class
+    		- Added equals(), isGreaterThan(), isLessThan() funcs to
+    		  compare two fractions.
+
+commit f9aae8d396dcfc0d19a91a7470dada73d14b5db9
+Merge: 0c8b801 41847f0
+Author: GuiltyKing12 <bher@mines.edu>
+Date:   Tue Dec 1 22:42:00 2015 -0700
+
+    Fiexed some merge issues with GameEngines
+
+commit 0c8b8013e36a29e8e616581faf12cf39906a41cc
+Author: GuiltyKing12 <bher@mines.edu>
+Date:   Tue Dec 1 22:38:49 2015 -0700
+
+    DisplayGUI now shows the player controls, questionbox, livesbox, and later will be able to show playerName and score when we initialize player.
+    GameEngine is now the main JFrame and will display the GUI and menubar
+
+commit 41847f03841d766ab873699e1d00a7e3c1532041
+Author: John Spielvogel <jspielvo@mymail.mines.edu>
+Date:   Tue Dec 1 21:26:58 2015 -0700
+
+    CHANGES:
+    	- "Test" questions randomly generate two fractions which are used
+    	  in the question itself.
+    	  	- getRandomFraction() returns a random fraction
+    		- Scales the possible numerator and
+    		  denominator respectively to the level the player is on.
+    	- "Test" questions are now being added to questions list in
+    	  QuestionBank
+
+commit d17489040e5252da13dee08e122850c232c9afde
+Merge: 4c8b351 71bacf3
+Author: jspielvo <jspielvo@mymail.mines.edu>
+Date:   Tue Dec 1 12:41:38 2015 -0700
+
+    Resolving merge conflicts in QuestionBank
+
+commit 4c8b35126d944a1aeecf06cacd318516cc80c310
+Author: jspielvo <jspielvo@mymail.mines.edu>
+Date:   Tue Dec 1 12:39:42 2015 -0700
+
+    Making progress on Question class
+
+commit 71bacf3bea7ae684c00a79dbde64b8ea2baadc34
+Author: GuiltyKing12 <bher@mines.edu>
+Date:   Tue Dec 1 12:16:36 2015 -0700
+
+    DisplayGui will now construct a question display
+
+commit 4519c6a240cb268b3816f937c8ca6b9568fd88d7
+Author: Junquan Lin & Thi La <julin@mines.edu>
+Date:   Tue Dec 1 12:15:17 2015 -0700
+
+    cleaned up
+
+commit b94f2fdf3d7ccbb60dbfa3b5e519d05362849647
+Merge: 495e713 18d8561
+Author: Junquan Lin & Thi La <julin@mines.edu>
+Date:   Tue Dec 1 12:12:06 2015 -0700
+
+    Merge branch 'master' of https://github.com/GuiltyKing12/Final-Project
+
+commit 495e71372f61d46e54c4efc18be91d37cbd652cc
+Author: Junquan Lin & Thi La <julin@mines.edu>
+Date:   Tue Dec 1 12:10:29 2015 -0700
+
+    upadted questionBank and Fraction classes, need to generate questions and solutions still.
+
+commit 18d8561bef57fd473705a3281561d4923df300da
+Merge: 1d00803 b9c3e88
+Author: jspielvo <jspielvo@mymail.mines.edu>
+Date:   Tue Dec 1 12:03:24 2015 -0700
+
+    Merge branch 'master' of https://github.com/GuiltyKing12/Final-Project
+
+commit 1d008036ceb083682e220cb9778d18fed8172046
+Author: jspielvo <jspielvo@mymail.mines.edu>
+Date:   Tue Dec 1 12:02:54 2015 -0700
+
+    Removed printing of solutionCells
+
+commit b9c3e88925e925380dc6baa8e921a8178e1ef79b
+Author: GuiltyKing12 <bher@mines.edu>
+Date:   Tue Dec 1 12:01:31 2015 -0700
+
+    Removed some imports from Board and BoardCell
+
+commit 87c92563590ede133358b70df6018f09112c7522
+Author: John Spielvogel <jspielvo@mymail.mines.edu>
+Date:   Tue Dec 1 10:05:19 2015 -0700
+
+    CHANGES:
+    	- ALL BoardTests are now passing!
+    	- Finished initializeLevel() func in GameBoard
+    	- Added initializeLegend() and intializeSolutionCells()
+    		- Completed and work properly
+    	- Rewrote some code in BoardTests in order to use new func's in
+    	  GameBoard class
+    
+    TODO:
+    	- Add additional answer cells to floorEasy layout ( have 7, need
+    	  15)
+    	- Add additional tests to test these new answer cells.
+
+commit ed062b220c6373f1edc98f2a2afe9c3efdef7239
+Author: GuiltyKing12 <bher@mines.edu>
+Date:   Mon Nov 30 22:46:49 2015 -0700
+
+    Added some code in order to read and configure a board from csv file
+
+commit 63fe844679026cb130a04fa941ad47caa60e2c75
+Author: John Spielvogel <jspielvo@mymail.mines.edu>
+Date:   Tue Nov 24 21:54:19 2015 -0700
+
+    Added gitLog.txt
+
 commit 34e96bc9c6b9a2601f0160d6b46e37a7010a0f8a
 Author: John Spielvogel <jspielvo@mymail.mines.edu>
 Date:   Tue Nov 24 21:53:19 2015 -0700

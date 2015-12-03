@@ -81,4 +81,7 @@ public class DisplayGUI extends JPanel{
 		mainPanel.add(playerControl);
 	}
 
+	public void setQuestionField(Question question) {
+		this.question.setText(question.toString());
+	}
 }

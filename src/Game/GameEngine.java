@@ -41,6 +41,7 @@ public class GameEngine extends JFrame {
 		board.initialize();
 		
 		setSize(WIDTH, LENGTH);
+		display.setQuestionField(questionBank.getRandomQuestion());
 		panel.add(board);
 		panel.add(display);
 		add(panel, BorderLayout.CENTER);
