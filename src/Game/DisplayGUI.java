@@ -17,10 +17,12 @@ public class DisplayGUI extends JPanel{
 	private JTextArea question;
 	private GameBoard board;
 	private JPanel mainPanel;
+	private int margin = 5;
 	
 	public DisplayGUI(GameBoard board) {
-		setLayout(new FlowLayout());
-		setPreferredSize(new Dimension(600, 500));
+		//setLayout(new FlowLayout());
+		setLayout(new GridLayout(2, 1));
+		setPreferredSize(new Dimension(GameEngine.WIDTH, GameEngine.LENGTH/4));
 		this.board = board;
 		
 		mainPanel = new JPanel();
@@ -32,7 +34,7 @@ public class DisplayGUI extends JPanel{
 	
 	public void setPlayerInfo() {
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(2, 2, 5, 5));
+		panel.setLayout(new GridLayout(2, 2, margin, margin));
 		JTextField playerName = new JTextField(15);
 		JTextField playerScore = new JTextField(10);
 		JTextField test = new JTextField();
@@ -58,7 +60,7 @@ public class DisplayGUI extends JPanel{
 	}
 	
 	public void setQuestionDisplay() {
-		question = new JTextArea(5,50);
+		question = new JTextArea(3,30);
 		question.setText("This is a question!!!");
 		question.setBorder(new TitledBorder(new EtchedBorder(), "Question"));
 		question.setEditable(false);
