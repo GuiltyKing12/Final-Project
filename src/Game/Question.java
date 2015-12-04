@@ -10,7 +10,7 @@ public class Question {
 	private Fraction fraction3;
 	private int level;
 	private QuestionType type;
-	private double solution;
+	private Fraction solution;
 	Random rand = new Random();
 	
 	public Question(String text, QuestionType type, int level) {
@@ -19,8 +19,8 @@ public class Question {
 		this.level = level;
 		
 		generateFractions();
-		computeSolution();
 		formatText();
+		computeSolution();
 	}
 	
 	private void generateFractions() {
@@ -31,6 +31,8 @@ public class Question {
 			fraction3 = getRandomFraction();
 		}
 	}
+	
+	
 	
 	public Fraction getRandomFraction() {
 		int initial = 4;
@@ -71,22 +73,27 @@ public class Question {
 		
 		switch (type) {
 			case SUBTRACT:
-				
+				solution = subtract();
 				break;
 				
 			case ADD:
+				solution = add();
 				break;
 				
 			case SUBADD:
+				solution = subAdd();
 				break;
 				
 			case ADDSUB:
+				solution = addSub();
 				break;
 				
 			case MULTIPLY:
+				solution = multiply();
 				break;
 				
 			case LESS:
+				
 				break;
 				
 			case GREATER:
@@ -96,7 +103,69 @@ public class Question {
 				break;
 				
 			case WORD:
+				
 				break;
 		}
+	}
+	
+	public Fraction subtract() {
+		if (!fraction1.hasCommonDenominator(fraction2)) {
+			fraction1.computeCommonDenominator(fraction2);
+		}
+
+		int numResult = fraction1.getNumerator() - fraction2.getNumerator();
+		int commonDenominator = fraction1.getDenominator();
+		
+		return new Fraction(numResult, commonDenominator);
+	}
+	
+	public Fraction add() {
+		if (!fraction1.hasCommonDenominator(fraction2)) {
+			fraction1.computeCommonDenominator(fraction2);
+		}
+		
+		int numResult = fraction1.getNumerator() + fraction2.getNumerator();
+		int commonDenominator = fraction1.getDenominator();
+		
+		return new Fraction(numResult, commonDenominator);
+	}
+	
+	public Fraction subAdd() {
+		if (!fraction1.hasCommonDenominator(fraction2, fraction3)) {
+			fraction1.computeCommonDenominator(fraction2, fraction3);
+		}
+		
+		int numResult = fraction1.getNumerator() - fraction2.getNumerator() + fraction3.getNumerator();
+		int commonDenominator = fraction1.getDenominator();
+		
+		return new Fraction(numResult, commonDenominator);
+	}
+	
+	public Fraction addSub() {
+		if (!fraction1.hasCommonDenominator(fraction2, fraction3)) {
+			fraction1.computeCommonDenominator(fraction2, fraction3);
+		}
+		
+		
+		int numResult = fraction1.getNumerator() + fraction2.getNumerator() - fraction3.getNumerator();
+		int commonDenominator = fraction1.getDenominator();
+		
+		return new Fraction(numResult, commonDenominator);
+	}
+	
+	public Fraction multiply() {
+		int numResult = fraction1.getNumerator() * fraction2.getNumerator();
+		int denResult = fraction1.getDenominator() * fraction2.getDenominator();
+		
+		return new Fraction (numResult, denResult);
+	}
+	
+	public Fraction divide() {
+		Fraction f2Recipricol = fraction2.getRecipricol();
+		
+		int numResult = fraction1.getNumerator() * f2Recipricol.getNumerator();
+		int denResult = fraction1.getDenominator() * f2Recipricol.getDenominator();
+		
+		return new Fraction (numResult, denResult);
 	}
 }
