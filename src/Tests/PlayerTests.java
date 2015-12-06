@@ -26,7 +26,7 @@ public class PlayerTests {
 	@Test
 	public void testStartingLocation() {
 		// assign player from game and see if player starts out in position (12, 12)
-		player = board.getPlayer();
+		player = new Player(board.getPlayer());
 		assertEquals(12,  (int)(player.getPosition().x));
 		assertEquals(12, (int)(player.getPosition().y));
 	}
@@ -48,7 +48,7 @@ public class PlayerTests {
 	// Test player movement
 	@Test
 	public void testPlayerMovement() {
-		player = board.getPlayer();
+		player = new Player(board.getPlayer());
 		
 		// checks to see if player moves down correctly
 		player.move(new Vec2d(12, 13));

@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -13,11 +15,17 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+import com.sun.javafx.geom.Vec2d;
+
 public class DisplayGUI extends JPanel{
 	private JTextArea question;
 	private GameBoard board;
 	private JPanel mainPanel;
 	private int margin = 5;
+	private JButton up;
+	private JButton down;
+	private JButton left;
+	private JButton right;
 	
 	public DisplayGUI(GameBoard board) {
 		//setLayout(new FlowLayout());
@@ -72,10 +80,14 @@ public class DisplayGUI extends JPanel{
 	public void setPlayerControls() {
 		JPanel playerControl = new JPanel();
 		playerControl.setLayout(new BorderLayout());
-		JButton up = new JButton("UP");
-		JButton down = new JButton("DOWN");
-		JButton left = new JButton("LEFT");
-		JButton right = new JButton("RIGHT");
+		up = new JButton("UP");
+		up.addActionListener(new moveControlListener());
+		down = new JButton("DOWN");
+		down.addActionListener(new moveControlListener());
+		left = new JButton("LEFT");
+		left.addActionListener(new moveControlListener());
+		right = new JButton("RIGHT");
+		right.addActionListener(new moveControlListener());
 		
 		playerControl.add(up, BorderLayout.NORTH);
 		playerControl.add(down, BorderLayout.SOUTH);
@@ -87,5 +99,25 @@ public class DisplayGUI extends JPanel{
 
 	public void setQuestionField(Question question) {
 		this.question.setText(question.toString());
+	}
+	
+	private class moveControlListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			int currentCol = (int) board.getPlayer().getPosition().y;
+			int currentRow = (int) board.getPlayer().getPosition().x;
+			if(e.getSource() == up) {
+				board.getPlayer().move(new Vec2d(currentRow - 1, currentCol));
+			}
+			else if(e.getSource() == down) {
+				board.getPlayer().move(new Vec2d(currentRow + 1, currentCol));
+			}
+			else if(e.getSource() == left) {
+				board.getPlayer().move(new Vec2d(currentRow, currentCol - 1));
+			}
+			else if(e.getSource() == right) {
+				board.getPlayer().move(new Vec2d(currentRow, currentCol + 1));
+			}
+			board.repaint();
+		}
 	}
 }

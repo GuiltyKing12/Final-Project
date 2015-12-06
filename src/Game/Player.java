@@ -23,14 +23,21 @@ public class Player {
 		this.color = color.BLUE;
 		this.score = 0;
 		this.lives = 3;
-		this.position = new Vec2d(13, 14);
-		//this.row = 15;
-		//this.col = 15;
+		this.position = new Vec2d(12, 12);
+	}
+	
+	public Player(Player player2) {
+		this.name = player2.getName();
+		this.position = player2.getPosition();
+		this.color = player2.getColor();
+		this.score = player2.getScore();
+		this.position = player2.getPosition();
+		this.lives = player2.getLives();
 	}
 	
 	public void draw(Graphics g) {
 		g.setColor(color);
-		g.fillOval((int) position.x*SIZE, (int) position.y*SIZE, SIZE, SIZE);
+		g.fillOval((int) position.y*SIZE, (int) position.x*SIZE, SIZE, SIZE);
 		
 	}
 
@@ -50,6 +57,10 @@ public class Player {
 		return lives;
 	}
 	
+	public Color getColor() {
+		return color;
+	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -65,4 +76,5 @@ public class Player {
 	public void move(Vec2d moveLocation) {
 		this.position = moveLocation;
 	}
+	
 }

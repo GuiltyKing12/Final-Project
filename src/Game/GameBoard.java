@@ -1,5 +1,6 @@
 package Game;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -139,6 +140,11 @@ public class GameBoard extends JPanel {
 			for(int j = 0; j < cols; j++) {
 				board[i][j].draw(g);
 			}
+		}
+		
+		g.setColor(Color.BLACK);
+		for(int i = 0; i < solutionCells.size(); i++) {
+			//g.drawString(, x, y);
 		}
 		
 		player.draw(g);
