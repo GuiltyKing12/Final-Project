@@ -77,6 +77,10 @@ public class QuestionBank {
 		return temp;
 	}
 	
+	public ArrayList<Question> getQuestions() {
+		return questions;
+	}
+	
 	public Question getRandomQuestion() {
 		return questions.get(rand.nextInt(questions.size()));
 	}
