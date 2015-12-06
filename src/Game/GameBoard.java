@@ -140,6 +140,8 @@ public class GameBoard extends JPanel {
 				board[i][j].draw(g);
 			}
 		}
+		
+		player.draw(g);
 	}
 	
 	public List<BoardCell> getSolutionCells() {

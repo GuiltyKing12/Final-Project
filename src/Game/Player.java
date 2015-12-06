@@ -1,12 +1,17 @@
 package Game;
 
 import java.awt.Color;
+import java.awt.Graphics;
 
 import com.sun.javafx.geom.Vec2d;
 
 public class Player {
+	private static final int SIZE = 25;
+	
 	private String name;
 	private Vec2d position;
+	private int row;
+	private int col;
 	private Color color;
 	private int score;
 	private int lives;
@@ -15,9 +20,17 @@ public class Player {
 		// TODO: Implementation
 		this.name = "NULL";
 		this.position = null;
-		this.color = null;
+		this.color = color.BLUE;
 		this.score = 0;
 		this.lives = 3;
+		this.row = 15;
+		this.col = 15;
+	}
+	
+	public void draw(Graphics g) {
+		g.setColor(color);
+		g.fillOval(row*SIZE, col*SIZE, SIZE, SIZE);
+		
 	}
 
 	public Vec2d getPosition() {
