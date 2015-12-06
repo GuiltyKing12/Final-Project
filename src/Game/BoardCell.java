@@ -1,8 +1,11 @@
 package Game;
 
+import java.awt.Graphics;
+
 public class BoardCell {
 	private int row;					// Coordinate on the board
 	private int col;
+	private static final int SIZE = 25;
 	private int cellSideSize;			// Dimension of each cell's side
 	private boolean isSolutionCell;		// Is this cell a potential solution cell?
 	private char initial;				// Read from the boardConfig File
@@ -17,7 +20,10 @@ public class BoardCell {
 		this.secondary = '\0';
 	}
 
-
+	public void draw(Graphics g) {
+		g.drawRect(row*SIZE, col*SIZE, SIZE, SIZE);
+	}
+	
 	public int getRow() {
 		return row;
 	}

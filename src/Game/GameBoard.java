@@ -1,5 +1,6 @@
 package Game;
 
+import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -128,6 +129,17 @@ public class GameBoard extends JPanel {
 		// uses the boardConfigFile arrayList -> randomly choose one
 		Random rand = new Random();
 		initializeLevel(boardConfigFile.get(rand.nextInt(3)));
+	}
+	
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < cols; j++) {
+				board[i][j].draw(g);
+			}
+		}
 	}
 	
 	public List<BoardCell> getSolutionCells() {

@@ -22,7 +22,7 @@ public class DisplayGUI extends JPanel{
 	public DisplayGUI(GameBoard board) {
 		//setLayout(new FlowLayout());
 		setLayout(new GridLayout(2, 1));
-		setPreferredSize(new Dimension(GameEngine.WIDTH, GameEngine.LENGTH/4));
+		setPreferredSize(new Dimension(GameEngine.WIDTH, GameEngine.LENGTH/5));
 		this.board = board;
 		
 		mainPanel = new JPanel();
@@ -60,7 +60,7 @@ public class DisplayGUI extends JPanel{
 	}
 	
 	public void setQuestionDisplay() {
-		question = new JTextArea(3,30);
+		question = new JTextArea(1,20);
 		question.setText("This is a question!!!");
 		question.setBorder(new TitledBorder(new EtchedBorder(), "Question"));
 		question.setEditable(false);

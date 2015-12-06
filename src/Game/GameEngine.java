@@ -13,8 +13,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 public class GameEngine extends JFrame {
-	public static final int WIDTH = 700;
-	public static final int LENGTH = 1000;
+	public static final int WIDTH = 630;
+	public static final int LENGTH = 950;
 	
 	private GameBoard board;
 
@@ -29,12 +29,8 @@ public class GameEngine extends JFrame {
 	
 	public void initialize() {
 		setTitle("Maze Runner");
-		setSize(WIDTH, LENGTH);
-		//setPreferredSize(new Dimension(WIDTH, LENGTH));
+		getContentPane().setPreferredSize(new Dimension(WIDTH, LENGTH));
 		setUpMenuBar();
-		//JPanel panel = new JPanel();
-		//panel.setPreferredSize(new Dimension(WIDTH, LENGTH / 2));
-		//panel.setLayout(new GridLayout(2, 1));
 		
 		gameLevel = 0;
 		board = new GameBoard();
@@ -45,7 +41,6 @@ public class GameEngine extends JFrame {
 		display.setQuestionField(questionBank.getRandomQuestion());
 		add(board, BorderLayout.CENTER);
 		add(display, BorderLayout.SOUTH);
-		//add(panel);
 		
 		pack();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
