@@ -25,6 +25,11 @@ public class GameEngine extends JFrame {
 	
 	public GameEngine() {
 		initialize();
+		
+		// TEST:
+		
+		Question randQ = questionBank.getRandomQuestion();
+		System.out.println(randQ.toString() + " = " + randQ.getSolutionString() + " = " + String.valueOf(randQ.getSolutionValue()));
 	}
 	
 	public void initialize() {

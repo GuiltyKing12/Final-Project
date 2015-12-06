@@ -13,7 +13,6 @@ public class QuestionBank {
 	private ArrayList<Question> questions;
 	private ArrayList<Question> arithmeticQuestions;
 	private ArrayList<Question> wordQuestions;
-	private ArrayList<String> solution;
 	private int currentLevel;
 	private Random rand;
 	
@@ -24,13 +23,12 @@ public class QuestionBank {
 	}
 	
 	private void initialize() {
-		questions = new ArrayList<Question>();
-		solution = new ArrayList<String>();
+		questions = new ArrayList<Question>(); 
 		arithmeticQuestions = new ArrayList<Question>();
 		wordQuestions = new ArrayList<Question>();
 		rand = new Random();
 		initializeQuestionBank();
-		printQuestionBankContents();
+		//printQuestionBankContents();
 	}
 	
 	private void initializeQuestionBank() {
@@ -83,22 +81,10 @@ public class QuestionBank {
 		return questions.get(rand.nextInt(questions.size()));
 	}
 	
-
-	
-	public void generateQuestions(){
-		questions.clear();
-		solution.clear();
-		//TODO: call solution and add in to arraylist
-	}
-
 	public String getQuestion() {
 		return questions.get(0).toString();
 	}
-	
-	public String getSoluton() {
-		return solution.get(0).toString();
-	}
-	
+
 	public boolean evaluateGuess() {
 		return false;
 	}
