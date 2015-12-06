@@ -1,5 +1,6 @@
 package Game;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class BoardCell {
@@ -21,6 +22,18 @@ public class BoardCell {
 	}
 
 	public void draw(Graphics g) {
+		switch(initial) {
+			case 'N': g.setColor(Color.BLACK);
+					  break;
+			case 'W': g.setColor(Color.YELLOW);
+					  break;
+			case 'A': g.setColor(Color.GREEN);
+					  break;
+			case 'I': g.setColor(Color.RED);
+					  break;
+		}
+		g.fillRect(row*SIZE, col*SIZE, SIZE, SIZE);
+		g.setColor(Color.GRAY);
 		g.drawRect(row*SIZE, col*SIZE, SIZE, SIZE);
 	}
 	

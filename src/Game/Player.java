@@ -23,13 +23,14 @@ public class Player {
 		this.color = color.BLUE;
 		this.score = 0;
 		this.lives = 3;
-		this.row = 15;
-		this.col = 15;
+		this.position = new Vec2d(13, 14);
+		//this.row = 15;
+		//this.col = 15;
 	}
 	
 	public void draw(Graphics g) {
 		g.setColor(color);
-		g.fillOval(row*SIZE, col*SIZE, SIZE, SIZE);
+		g.fillOval((int) position.x*SIZE, (int) position.y*SIZE, SIZE, SIZE);
 		
 	}
 
