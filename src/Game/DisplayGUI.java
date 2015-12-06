@@ -101,20 +101,27 @@ public class DisplayGUI extends JPanel{
 		this.question.setText(question.toString());
 	}
 	
+	public Boolean checkCanMove(int col, int row) {
+		if(board.getCellAt(row, col).getInitial() == 'N') {
+			return false;
+		}
+		return true;
+	}
+	
 	private class moveControlListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			int currentCol = (int) board.getPlayer().getPosition().y;
 			int currentRow = (int) board.getPlayer().getPosition().x;
-			if(e.getSource() == up) {
+			if(e.getSource() == up && checkCanMove(currentRow - 1, currentCol)) {
 				board.getPlayer().move(new Vec2d(currentRow - 1, currentCol));
 			}
-			else if(e.getSource() == down) {
+			else if(e.getSource() == down && checkCanMove(currentRow + 1, currentCol)) {
 				board.getPlayer().move(new Vec2d(currentRow + 1, currentCol));
 			}
-			else if(e.getSource() == left) {
+			else if(e.getSource() == left && checkCanMove(currentRow, currentCol - 1)) {
 				board.getPlayer().move(new Vec2d(currentRow, currentCol - 1));
 			}
-			else if(e.getSource() == right) {
+			else if(e.getSource() == right && checkCanMove(currentRow, currentCol + 1)) {
 				board.getPlayer().move(new Vec2d(currentRow, currentCol + 1));
 			}
 			board.repaint();
