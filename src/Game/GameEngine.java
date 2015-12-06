@@ -45,7 +45,7 @@ public class GameEngine extends JFrame {
 		
 		display.setQuestionField(questionBank.getRandomQuestion());
 		add(board, BorderLayout.CENTER);
-		add(display, BorderLayout.SOUTH);
+		add(display, BorderLayout.EAST);
 		
 		pack();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
