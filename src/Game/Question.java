@@ -17,7 +17,7 @@ public class Question {
 		this.rawText = text;
 		this.type = type;
 		this.level = level;
-		
+		solution = new Fraction();
 		generateFractions();
 		formatText();
 		computeSolution();
@@ -93,21 +93,46 @@ public class Question {
 				break;
 				
 			case LESS:
-				
+				solution = less();
 				break;
 				
 			case GREATER:
+				solution = greater();
 				break;
 				
 			case EQUAL:
+				solution = equals();
 				break;
 				
 			case WORD:
-				
+				// WRONG SOLUTION NEEDS TO HAVE LOGIC IMPLEMENTED!
+				solution = equals();
 				break;
 		}
 	}
 	
+	private Fraction less() {
+		if (fraction1.isLessThan(fraction2)) {
+			return new Fraction(1, 1);
+		}
+		return new Fraction(0, 1);
+	}
+	
+	private Fraction greater() {
+		if (fraction1.isGreaterThan(fraction2)) {
+			return new Fraction(1, 1);
+		}
+		return new Fraction(0, 1);
+	}
+	
+	private Fraction equals() {
+		if (fraction1.equals(fraction2)) {
+			return new Fraction(1, 1);
+		}
+		
+		return new Fraction(0, 1);
+	}
+
 	public Fraction subtract() {
 		if (!fraction1.hasCommonDenominator(fraction2)) {
 			fraction1.computeCommonDenominator(fraction2);

@@ -5,6 +5,12 @@ public class Fraction {
 	int denominator;
 	double value;
 	
+	public Fraction() {
+		this.numerator = 0;
+		this.denominator = 0;
+		this.value = 0.0;
+	}
+	
 	public Fraction(int numerator, int denominator) {
 		this.numerator = numerator;
 		this.denominator = denominator;
@@ -96,7 +102,7 @@ public class Fraction {
 
 	@Override
 	public String toString() {
-		String temp = String.valueOf(numerator) + " / " + String.valueOf(denominator);
-		return temp;
+		//String temp = String.valueOf(numerator) + " / " + String.valueOf(denominator);
+		return (numerator + " / " + denominator);
 	}
 }
