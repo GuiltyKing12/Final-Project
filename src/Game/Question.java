@@ -172,13 +172,4 @@ public class Question {
 	public Fraction getSolution() {
 		return solution;
 	}
-	
-	public String getSolutionString() {
-		String temp = solution.toString();
-		return temp;
-	}
-	
-	public double getSolutionValue() {
-		return solution.getValue();
-	}
 }
