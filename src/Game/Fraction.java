@@ -96,6 +96,7 @@ public class Fraction {
 
 	@Override
 	public String toString() {
-		return (numerator + " / " + denominator );
+		String temp = String.valueOf(numerator) + " / " + String.valueOf(denominator);
+		return temp;
 	}
 }
