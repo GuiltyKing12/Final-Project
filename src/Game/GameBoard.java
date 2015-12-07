@@ -16,6 +16,8 @@ import java.util.Vector;
 
 import javax.swing.JPanel;
 
+import com.sun.javafx.geom.Vec2d;
+
 public class GameBoard extends JPanel {
 	private int rows = 25;
 	private int cols = 25;
@@ -120,14 +122,30 @@ public class GameBoard extends JPanel {
 		}
 	}
 	
+	public void updateGame() {
+		Vec2d playerPos = getPlayer().getPosition();
+		
+			System.out.println("Player: " + playerPos.x + " " + playerPos.y + "\tisSoln: " + isPositionSolutionCell((int)playerPos.x, (int)playerPos.y) + " " + board[(int)(playerPos.x)][(int)(playerPos.y)].getInitial());
+		if (isPositionSolutionCell((int)(playerPos.x), (int)(playerPos.y))) {
+		}
+	}
+	
 	private void initializeSolutionCellList() {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
 				if (board[i][j].getIsSolutionCell()) {
 					solutionCells.add(board[i][j]);
+
 				}
 			}
 		}
+	}
+	
+	public boolean isPositionSolutionCell(int x, int y) {
+		if (board[x][y].getIsSolutionCell()) {
+			return true;
+		}
+		return false;
 	}
 	
 	public void startLevel() {
@@ -149,7 +167,7 @@ public class GameBoard extends JPanel {
 		
 		g.setColor(Color.BLACK);
 		for(int i = 0; i < solutionCells.size(); i++) {
-			//g.drawString(, x, y);
+			g.drawString("x", (int)(solutionCells.get(i).getRow() * cellSize + 0.45 * cellSize), (int)(solutionCells.get(i).getCol() * cellSize + 0.65 * cellSize));
 		}
 		
 		player.draw(g, cellSize);

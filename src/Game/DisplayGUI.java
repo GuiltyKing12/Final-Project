@@ -51,6 +51,9 @@ public class DisplayGUI extends JPanel{
 		playerScore = new JTextField(10);
 		test = new JTextField();
 		
+		JTextField playerScore = new JTextField(10);
+		JTextField test = new JTextField();
+		
 		playerName.setText(board.getPlayer().getName());
 		playerName.setEditable(false);
 		panel.add(playerName);
@@ -62,12 +65,18 @@ public class DisplayGUI extends JPanel{
 		panel.add(playerScore);
 		
 		test.setText(setLives());
+		test.setText(String.valueOf(board.getPlayer().getLives()));
 		test.setBorder(new TitledBorder(new EtchedBorder(), "Lives"));
 		test.setEditable(false);
 		panel.add(test);
 		mainPanel.add(panel, BorderLayout.NORTH);
 		
 	}
+	
+	public void setPlayerName(String name) {
+		playerName.setText(name);
+	}
+	
 	
 	public void setQuestionDisplay() {
 		JPanel panel = new JPanel();
@@ -106,10 +115,6 @@ public class DisplayGUI extends JPanel{
 		this.question.setText(question.toString());
 	}
 	
-	public void setPlayerName(String name) {
-		playerName.setText(name);
-	}
-	
 	public String setLives() {
 		String lives = "";
 		for(int i = 0; i < board.getPlayer().getScore(); i++) {
@@ -142,6 +147,9 @@ public class DisplayGUI extends JPanel{
 			else if(e.getSource() == right && checkCanMove(currentRow, currentCol + 1)) {
 				board.getPlayer().move(new Vec2d(currentRow, currentCol + 1));
 			}
+			
+			board.updateGame();
+			
 			board.repaint();
 		}
 	}

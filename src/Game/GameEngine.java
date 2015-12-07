@@ -20,9 +20,11 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import com.sun.javafx.geom.Vec2d;
+
 public class GameEngine extends JFrame {
-	public static int WIDTH = 1000;
-	public static int HEIGHT = 500;
+	public static int WIDTH = 1250;
+	public static int HEIGHT = 700;
 	private static final int MARGIN = 300;
 	
 	private GameBoard board;
@@ -41,29 +43,25 @@ public class GameEngine extends JFrame {
 	private QuestionBank questionBank;
 	private int gameLevel;
 	
-	public GameEngine() {
+	public GameEngine() {	
+		initialize();
+	}
+	
+	
+	public void initialize() {
 		gameLayout = new CardLayout();
 		screen = new JPanel();
 		mainMenu = new JPanel();
 		game = new JPanel();
 		componentListener = new ComponentListener();
 		isStarted=false;
+		
 		gameLayout.setHgap(10);
 		screen.setLayout(gameLayout);
-		initialize();
-		this.addComponentListener(componentListener);
-		board.addComponentListener(componentListener);
 		
-		// TEST:
-		
-		Question randQ = questionBank.getRandomQuestion();
-		System.out.println(randQ.toString() + " = " + randQ.getSolution().toString() + " = " + String.valueOf(randQ.getSolution().getValue()));
-	}
-	
-	public void initialize() {
 		setTitle("Maze Runner");
 		getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
-		setLayout(new BorderLayout(1, 2));
+		//setLayout(new BorderLayout(1, 2));
 		setUpMenuBar();
 		setUpMainMenu();
 		setUpGame();
@@ -71,8 +69,10 @@ public class GameEngine extends JFrame {
 		add(screen);
 		gameLayout.show(screen, "Main Menu");
 		
-		pack();
+		this.addComponentListener(componentListener);
+		board.addComponentListener(componentListener);
 		
+		pack();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 	}
@@ -129,7 +129,7 @@ public class GameEngine extends JFrame {
 		board = new GameBoard();
 		questionBank = new QuestionBank(gameLevel);
 		board.initialize();
-		game.setLayout(new GridLayout(1, 2));
+		game.setLayout(new GridLayout(1, 1));
 		JPanel panel = new JPanel();
 		display = new DisplayGUI(board);
 		display.setQuestionField(questionBank.getRandomQuestion());
@@ -161,7 +161,7 @@ public class GameEngine extends JFrame {
 		}
 		else
 		{
-		g.drawString("MAZE RUNNER", WIDTH / 2 - MARGIN, HEIGHT / 4);
+			g.drawString("MAZE RUNNER", WIDTH / 2 - MARGIN, HEIGHT / 4);
 		}
 	}
 	
@@ -198,12 +198,12 @@ public class GameEngine extends JFrame {
 		}
 	}
 	
-	private class ComponentListener extends ComponentAdapter {
+	private class ComponentListener extends ComponentAdapter {		
 		@Override
 		public void componentResized(ComponentEvent e) {
 			Dimension temp = new Dimension(getWidth(), getHeight());
 
-			board.setCellSize((int)((temp.width + temp.height)/ (board.getRows() + board.getCols()) * 0.60));
+			board.setCellSize((int)((temp.width + temp.height)/ (board.getRows() + board.getCols()) * 0.6));
 			board.setBounds(5, 5, temp.width / 2, temp.height);
 			display.setBounds(temp.width / 10, temp.height / 4, temp.width / 2, temp.height);
 			game.setSize(temp);
