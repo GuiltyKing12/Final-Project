@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -146,6 +145,11 @@ public class GameEngine extends JFrame {
 		g.drawString("MAZE RUNNER", WIDTH / 2 - MARGIN, LENGTH / 4);
 	}
 	
+	public void setupPlayer() {
+		String playerName = JOptionPane.showInputDialog("Please enter your name:");
+		board.getPlayer().setName(playerName);
+	}
+	
 	public void getInstructions() {
 		String message = "Welcome to Maze Runner! \n In maze runner your objective is to esacpe the maze by answering fraction questions. "
 				+ "\n A question will be given and the answer will be somewhere in the maze.  "
@@ -163,8 +167,7 @@ public class GameEngine extends JFrame {
 	private class MainMenuListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == play) {
-				getContentPane().setPreferredSize(null);
-				getContentPane().setPreferredSize(new Dimension(WIDTH, LENGTH));
+				setupPlayer();
 				gameLayout.show(screen, "Game");
 			}
 			else if(e.getSource() == instruction) {
