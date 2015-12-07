@@ -50,9 +50,9 @@ public class GameBoard extends JPanel {
 	}
 	
 	public void initializeConfigFiles() {
-		boardConfigFiles.add("/data/floorEasy.csv");
-		boardConfigFiles.add("/data/floorMedium.csv");
-		boardConfigFiles.add("/data/floorHard.csv");		
+		boardConfigFiles.add("floorEasy.csv");
+		boardConfigFiles.add("floorMedium.csv");
+		boardConfigFiles.add("floorHard.csv");		
 		this.legendConfigFile = "Legend.txt";
 	}
 	
