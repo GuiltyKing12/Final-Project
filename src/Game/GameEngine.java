@@ -217,7 +217,7 @@ public class GameEngine extends JFrame {
 	
 	public static void main(String[] args) {
 		GameEngine game = new GameEngine();
-		game.board.printLegend();
+		//game.board.printLegend();
 		//game.board.printBoard();
 	}
 }
