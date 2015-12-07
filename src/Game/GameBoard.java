@@ -125,8 +125,9 @@ public class GameBoard extends JPanel {
 	public void updateGame() {
 		Vec2d playerPos = getPlayer().getPosition();
 		
-			System.out.println("Player: " + playerPos.x + " " + playerPos.y + "\tisSoln: " + isPositionSolutionCell((int)playerPos.y, (int)playerPos.x) + " " + board[(int)(playerPos.x)][(int)(playerPos.y)].getInitial());
-		if (isPositionSolutionCell((int)(playerPos.x), (int)(playerPos.y))) {
+		if (isPositionSolutionCell((int)(playerPos.y), (int)(playerPos.x))) {		
+			// Implement logic - Do we want a dialogue to pop up giving player an option to select this answer or do something else.
+			System.out.println("Player: " + playerPos.x + " " + playerPos.y + " isSoln: " + isPositionSolutionCell((int)playerPos.y, (int)playerPos.x) + " -> IMPLEMENT new dialogue asking whether player wants to submit this answer or not.");
 		}
 	}
 	
