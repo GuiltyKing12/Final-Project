@@ -6,27 +6,16 @@ import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
-import java.util.Vector;
-
 import javax.swing.JPanel;
 
-import org.omg.CORBA.portable.InputStream;
-
 import com.sun.javafx.geom.Vec2d;
-
-import sun.misc.IOUtils;
 
 public class GameBoard extends JPanel {
 	private int rows = 25;
@@ -61,9 +50,9 @@ public class GameBoard extends JPanel {
 	}
 	
 	public void initializeConfigFiles() {
-		boardConfigFiles.add("floorEasy.csv");
-		boardConfigFiles.add("floorMedium.csv");
-		boardConfigFiles.add("floorHard.csv");		
+		boardConfigFiles.add("/data/floorEasy.csv");
+		boardConfigFiles.add("/data/floorMedium.csv");
+		boardConfigFiles.add("/data/floorHard.csv");		
 		this.legendConfigFile = "Legend.txt";
 	}
 	
