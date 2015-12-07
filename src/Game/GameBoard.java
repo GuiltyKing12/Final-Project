@@ -125,6 +125,7 @@ public class GameBoard extends JPanel {
 			for (int j = 0; j < cols; j++) {
 				if (board[i][j].getIsSolutionCell()) {
 					solutionCells.add(board[i][j]);
+
 				}
 			}
 		}

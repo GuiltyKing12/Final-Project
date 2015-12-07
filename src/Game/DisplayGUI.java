@@ -20,6 +20,7 @@ import com.sun.javafx.geom.Vec2d;
 
 public class DisplayGUI extends JPanel{
 	private JTextArea question;
+	JTextField playerName = new JTextField(15);
 	private GameBoard board;
 	private JPanel mainPanel;
 	private int margin = 5;
@@ -44,7 +45,7 @@ public class DisplayGUI extends JPanel{
 	public void setPlayerInfo() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(3, 1, margin, margin));
-		JTextField playerName = new JTextField(15);
+		
 		JTextField playerScore = new JTextField(10);
 		JTextField test = new JTextField();
 		
@@ -65,6 +66,14 @@ public class DisplayGUI extends JPanel{
 		mainPanel.add(panel, BorderLayout.NORTH);
 		
 	}
+	
+	/**
+	 * 
+	 */
+	public void setPlayerName(String name) {
+		playerName.setText(name);
+	}
+	
 	
 	public void setQuestionDisplay() {
 		JPanel panel = new JPanel();

@@ -9,6 +9,7 @@ public class BoardCell {
 	private boolean isSolutionCell;		// Is this cell a potential solution cell?
 	private char initial;				// Read from the boardConfig File
 	private char secondary;				// Read from the boardConfig File
+	private Fraction fraction;
 	
 	public BoardCell(char initial, int row, int col) {
 		this.row = row;
@@ -30,6 +31,7 @@ public class BoardCell {
 					  break;
 		}
 		g.fillRect(row*size, col*size, size, size);
+		
 		g.setColor(Color.GRAY);
 		g.drawRect(row*size, col*size, size, size);
 	}

@@ -63,7 +63,7 @@ public class GameEngine extends JFrame {
 	public void initialize() {
 		setTitle("Maze Runner");
 		getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
-		setLayout(new BorderLayout(1, 2));
+		//setLayout(new BorderLayout(1, 2));
 		setUpMenuBar();
 		setUpMainMenu();
 		setUpGame();
@@ -129,7 +129,7 @@ public class GameEngine extends JFrame {
 		board = new GameBoard();
 		questionBank = new QuestionBank(gameLevel);
 		board.initialize();
-		game.setLayout(new GridLayout(1, 2));
+		game.setLayout(new GridLayout(1, 1));
 		JPanel panel = new JPanel();
 		display = new DisplayGUI(board);
 		display.setQuestionField(questionBank.getRandomQuestion());
@@ -166,6 +166,7 @@ public class GameEngine extends JFrame {
 	public void setupPlayer() {
 		String playerName = JOptionPane.showInputDialog("Please enter your name:");
 		board.getPlayer().setName(playerName);
+		display.setPlayerName(playerName);
 	}
 	
 	public void getInstructions() {
@@ -200,7 +201,7 @@ public class GameEngine extends JFrame {
 		public void componentResized(ComponentEvent e) {
 			Dimension temp = new Dimension(getWidth(), getHeight());
 
-			board.setCellSize((int)((temp.width + temp.height)/ (board.getRows() + board.getCols()) * 0.60));
+			board.setCellSize((int)((temp.width + temp.height)/ (board.getRows() + board.getCols()) * 0.6));
 			board.setBounds(5, 5, temp.width / 2, temp.height);
 			display.setBounds(temp.width / 10, temp.height / 4, temp.width / 2, temp.height);
 			game.setSize(temp);
