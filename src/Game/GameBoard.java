@@ -125,7 +125,7 @@ public class GameBoard extends JPanel {
 	public void updateGame() {
 		Vec2d playerPos = getPlayer().getPosition();
 		
-			System.out.println("Player: " + playerPos.x + " " + playerPos.y + "\tisSoln: " + isPositionSolutionCell((int)playerPos.x, (int)playerPos.y) + " " + board[(int)(playerPos.x)][(int)(playerPos.y)].getInitial());
+			System.out.println("Player: " + playerPos.x + " " + playerPos.y + "\tisSoln: " + isPositionSolutionCell((int)playerPos.y, (int)playerPos.x) + " " + board[(int)(playerPos.x)][(int)(playerPos.y)].getInitial());
 		if (isPositionSolutionCell((int)(playerPos.x), (int)(playerPos.y))) {
 		}
 	}
