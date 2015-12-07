@@ -59,7 +59,7 @@ public class DisplayGUI extends JPanel{
 		playerScore.setEditable(false);
 		panel.add(playerScore);
 		
-		test.setText("These are Lives");
+		test.setText(String.valueOf(board.getPlayer().getLives()));
 		test.setBorder(new TitledBorder(new EtchedBorder(), "Lives"));
 		test.setEditable(false);
 		panel.add(test);
