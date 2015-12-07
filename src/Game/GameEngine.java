@@ -34,6 +34,7 @@ public class GameEngine extends JFrame {
 	private JButton play;
 	private JButton instruction;
 	private JButton exit;
+	private Boolean isStarted;
 	
 	private QuestionBank questionBank;
 	private int gameLevel;
@@ -43,6 +44,7 @@ public class GameEngine extends JFrame {
 		screen = new JPanel();
 		mainMenu = new JPanel();
 		game = new JPanel();
+		isStarted=false;
 		
 		screen.setLayout(gameLayout);
 		initialize();
@@ -142,7 +144,14 @@ public class GameEngine extends JFrame {
 		super.paint(g);
 		g.setColor(Color.RED);
 		g.setFont(new Font("TimesRoman", Font.BOLD, 80));
+		if(isStarted)
+		{
+			g.drawString("", WIDTH / 2 - MARGIN, LENGTH / 4);
+		}
+		else
+		{
 		g.drawString("MAZE RUNNER", WIDTH / 2 - MARGIN, LENGTH / 4);
+		}
 	}
 	
 	public void setupPlayer() {
@@ -169,6 +178,7 @@ public class GameEngine extends JFrame {
 			if(e.getSource() == play) {
 				setupPlayer();
 				gameLayout.show(screen, "Game");
+				isStarted=true;
 			}
 			else if(e.getSource() == instruction) {
 				getInstructions();
