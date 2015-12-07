@@ -4,9 +4,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +22,11 @@ import java.util.Vector;
 
 import javax.swing.JPanel;
 
+import org.omg.CORBA.portable.InputStream;
+
 import com.sun.javafx.geom.Vec2d;
+
+import sun.misc.IOUtils;
 
 public class GameBoard extends JPanel {
 	private int rows = 25;
@@ -24,7 +34,7 @@ public class GameBoard extends JPanel {
 	private static final int WIDTH = 1000;
 	private static final int LENGTH = 950;
 	private int cellSize = 25;
-	private ArrayList<String> boardConfigFile;
+	private ArrayList<String> boardConfigFiles;
 	private String legendConfigFile;
 	private BoardCell[][] board;
 	private Map<Character, String> legend;
@@ -38,28 +48,31 @@ public class GameBoard extends JPanel {
 	}
 	
 	public void initialize() {
-		this.boardConfigFile = new ArrayList<String>();
+		this.boardConfigFiles = new ArrayList<String>();
 		this.solutionCells = new ArrayList<BoardCell>();
 		this.legend = new HashMap<Character, String>();
 		this.board = new BoardCell[rows][cols];
 		
 		initializeConfigFiles();
 		initializeLegend();
-		initializeLevel("floorEasy.csv");
+		//initializeLevel("floorEasy.csv");
+		initializeLevel(1);
 		initializeSolutionCellList();
 	}
 	
 	public void initializeConfigFiles() {
-		boardConfigFile.add("floorEasy.csv");
-		boardConfigFile.add("floorMedium.csv");
-		boardConfigFile.add("floorHard.csv");		
+		boardConfigFiles.add("floorEasy.csv");
+		boardConfigFiles.add("floorMedium.csv");
+		boardConfigFiles.add("floorHard.csv");		
 		this.legendConfigFile = "Legend.txt";
 	}
 	
 	private void initializeLegend() {
 		try {
-			FileReader fin = new FileReader(legendConfigFile);
-			BufferedReader br = new BufferedReader(fin);
+			//FileReader fin = new FileReader(legendConfigFile);
+			FileInputStream streamIn = new FileInputStream(legendConfigFile);
+			Reader r = new InputStreamReader(streamIn);
+			BufferedReader br = new BufferedReader(r);
 			
 			String line = "";
 
@@ -79,10 +92,12 @@ public class GameBoard extends JPanel {
 		
 	}
 	
-	public void initializeLevel(String configFile) {
+	public void initializeLevel(int level) {
 		try {
-			FileReader filo = new FileReader(configFile);
-			BufferedReader br = new BufferedReader(filo);
+			//FileReader filo = new FileReader(configFile);
+			FileInputStream streamIn = new FileInputStream(boardConfigFiles.get(level-1));
+			Reader r = new InputStreamReader(streamIn);
+			BufferedReader br = new BufferedReader(r);
 
 			String line = "";
 			int rowCounter = 0;
@@ -149,12 +164,12 @@ public class GameBoard extends JPanel {
 		return false;
 	}
 	
-	public void startLevel() {
+/*	public void startLevel() {
 		// will draw the board
 		// uses the boardConfigFile arrayList -> randomly choose one
 		Random rand = new Random();
 		initializeLevel(boardConfigFile.get(rand.nextInt(3)));
-	}
+	}*/
 	
 	@Override
 	public void paintComponent(Graphics g) {
@@ -228,7 +243,7 @@ public class GameBoard extends JPanel {
 	
 	// TEST METHODS: used for tests
 	public ArrayList<String> getLoadFile() {
-		return boardConfigFile;
+		return boardConfigFiles;
 	}
 
 	public BoardCell getCellAt(int i, int j) {
@@ -242,5 +257,4 @@ public class GameBoard extends JPanel {
 	public int getCellSize() {
 		return cellSize;
 	}
-	
 }
