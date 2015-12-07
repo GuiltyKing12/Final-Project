@@ -135,6 +135,9 @@ public class DisplayGUI extends JPanel{
 			else if(e.getSource() == right && checkCanMove(currentRow, currentCol + 1)) {
 				board.getPlayer().move(new Vec2d(currentRow, currentCol + 1));
 			}
+			
+			board.updateGame();
+			
 			board.repaint();
 		}
 	}

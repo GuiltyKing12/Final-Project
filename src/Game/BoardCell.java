@@ -14,8 +14,8 @@ public class BoardCell {
 	public BoardCell(char initial, int row, int col) {
 		this.row = row;
 		this.col = col;
-		this.isSolutionCell = (initial == 'A') ? true : false;	// Sets isSolutionCell to true if (initial == 'A')
 		this.initial = initial;
+		this.isSolutionCell = (initial == 'A') ? true : false;	// Sets isSolutionCell to true if (initial == 'A')
 		this.secondary = '\0';
 	}
 

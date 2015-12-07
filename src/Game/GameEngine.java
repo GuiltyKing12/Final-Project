@@ -20,6 +20,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import com.sun.javafx.geom.Vec2d;
+
 public class GameEngine extends JFrame {
 	public static int WIDTH = 1250;
 	public static int HEIGHT = 700;
@@ -44,6 +46,7 @@ public class GameEngine extends JFrame {
 	public GameEngine() {	
 		initialize();
 	}
+	
 	
 	public void initialize() {
 		gameLayout = new CardLayout();
@@ -156,7 +159,7 @@ public class GameEngine extends JFrame {
 		}
 		else
 		{
-		g.drawString("MAZE RUNNER", WIDTH / 2 - MARGIN, HEIGHT / 4);
+			g.drawString("MAZE RUNNER", WIDTH / 2 - MARGIN, HEIGHT / 4);
 		}
 	}
 	
@@ -193,7 +196,7 @@ public class GameEngine extends JFrame {
 		}
 	}
 	
-	private class ComponentListener extends ComponentAdapter {
+	private class ComponentListener extends ComponentAdapter {		
 		@Override
 		public void componentResized(ComponentEvent e) {
 			Dimension temp = new Dimension(getWidth(), getHeight());
