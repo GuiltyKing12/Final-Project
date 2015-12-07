@@ -23,6 +23,9 @@ public class DisplayGUI extends JPanel{
 	private GameBoard board;
 	private JPanel mainPanel;
 	private int margin = 5;
+	JTextField playerName;
+	JTextField playerScore;
+	JTextField test;
 	private JButton up;
 	private JButton down;
 	private JButton left;
@@ -44,9 +47,9 @@ public class DisplayGUI extends JPanel{
 	public void setPlayerInfo() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(3, 1, margin, margin));
-		JTextField playerName = new JTextField(15);
-		JTextField playerScore = new JTextField(10);
-		JTextField test = new JTextField();
+		playerName = new JTextField(15);
+		playerScore = new JTextField(10);
+		test = new JTextField();
 		
 		playerName.setText(board.getPlayer().getName());
 		playerName.setEditable(false);
@@ -58,7 +61,7 @@ public class DisplayGUI extends JPanel{
 		playerScore.setEditable(false);
 		panel.add(playerScore);
 		
-		test.setText("These are Lives");
+		test.setText(setLives());
 		test.setBorder(new TitledBorder(new EtchedBorder(), "Lives"));
 		test.setEditable(false);
 		panel.add(test);
@@ -101,6 +104,19 @@ public class DisplayGUI extends JPanel{
 
 	public void setQuestionField(Question question) {
 		this.question.setText(question.toString());
+	}
+	
+	public void setPlayerName(String name) {
+		playerName.setText(name);
+	}
+	
+	public String setLives() {
+		String lives = "";
+		for(int i = 0; i < board.getPlayer().getScore(); i++) {
+			lives += "O   ";
+		}
+		
+		return lives;
 	}
 	
 	public Boolean checkCanMove(int col, int row) {

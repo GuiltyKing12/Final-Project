@@ -134,8 +134,8 @@ public class GameEngine extends JFrame {
 		display = new DisplayGUI(board);
 		display.setQuestionField(questionBank.getRandomQuestion());
 		panel.add(display);
-		game.add(board, BorderLayout.WEST);
-		game.add(panel, BorderLayout.EAST);
+		game.add(board);
+		game.add(panel);
 	
 		
 		screen.add(game, "Game");
@@ -146,7 +146,9 @@ public class GameEngine extends JFrame {
 	}
 	
 	public void advanceNextLevel() {
-		
+		if(board.getPlayer().getScore() == 3) {
+			//board.initializeLevel();
+		}
 	}
 	
 	public void paint(Graphics g) {
@@ -166,6 +168,7 @@ public class GameEngine extends JFrame {
 	public void setupPlayer() {
 		String playerName = JOptionPane.showInputDialog("Please enter your name:");
 		board.getPlayer().setName(playerName);
+		display.setPlayerName(playerName);
 	}
 	
 	public void getInstructions() {
