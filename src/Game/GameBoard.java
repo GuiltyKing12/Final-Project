@@ -21,6 +21,7 @@ public class GameBoard extends JPanel {
 	private int cols = 25;
 	private static final int WIDTH = 1000;
 	private static final int LENGTH = 950;
+	private int cellSize = 25;
 	private ArrayList<String> boardConfigFile;
 	private String legendConfigFile;
 	private BoardCell[][] board;
@@ -142,7 +143,7 @@ public class GameBoard extends JPanel {
 		
 		for(int i = 0; i < rows; i++) {
 			for(int j = 0; j < cols; j++) {
-				board[i][j].draw(g);
+				board[i][j].draw(g, cellSize);
 			}
 		}
 		
@@ -151,7 +152,7 @@ public class GameBoard extends JPanel {
 			//g.drawString(, x, y);
 		}
 		
-		player.draw(g);
+		player.draw(g, cellSize);
 	}
 	
 	public List<BoardCell> getSolutionCells() {
@@ -213,6 +214,14 @@ public class GameBoard extends JPanel {
 
 	public BoardCell getCellAt(int i, int j) {
 		return board[i][j];
+	}
+
+	public void setCellSize(int cellSize) {
+		this.cellSize = cellSize;
+	}
+	
+	public int getCellSize() {
+		return cellSize;
 	}
 	
 }

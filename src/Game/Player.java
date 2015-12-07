@@ -6,8 +6,6 @@ import java.awt.Graphics;
 import com.sun.javafx.geom.Vec2d;
 
 public class Player {
-	private static final int SIZE = 25;
-	
 	private String name;
 	private Vec2d position;
 	private int row;
@@ -35,9 +33,9 @@ public class Player {
 		this.lives = player2.getLives();
 	}
 	
-	public void draw(Graphics g) {
+	public void draw(Graphics g, int size) {
 		g.setColor(color);
-		g.fillOval((int) position.y*SIZE, (int) position.x*SIZE, SIZE, SIZE);
+		g.fillOval((int) position.y*size, (int) position.x*size, size, size);
 		
 	}
 

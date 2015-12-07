@@ -9,6 +9,8 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,8 +21,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class GameEngine extends JFrame {
-	public static final int WIDTH = 1250;
-	public static final int LENGTH = 1000;
+	public static int WIDTH = 1000;
+	public static int HEIGHT = 500;
 	private static final int MARGIN = 300;
 	
 	private GameBoard board;
@@ -35,7 +37,7 @@ public class GameEngine extends JFrame {
 	private JButton instruction;
 	private JButton exit;
 	private Boolean isStarted;
-	
+	private ComponentListener componentListener;
 	private QuestionBank questionBank;
 	private int gameLevel;
 	
@@ -44,10 +46,13 @@ public class GameEngine extends JFrame {
 		screen = new JPanel();
 		mainMenu = new JPanel();
 		game = new JPanel();
+		componentListener = new ComponentListener();
 		isStarted=false;
-		
+		gameLayout.setHgap(10);
 		screen.setLayout(gameLayout);
 		initialize();
+		this.addComponentListener(componentListener);
+		board.addComponentListener(componentListener);
 		
 		// TEST:
 		
@@ -57,16 +62,17 @@ public class GameEngine extends JFrame {
 	
 	public void initialize() {
 		setTitle("Maze Runner");
-		getContentPane().setPreferredSize(new Dimension(WIDTH, LENGTH));
-		
+		getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		setLayout(new BorderLayout(1, 2));
 		setUpMenuBar();
 		setUpMainMenu();
 		setUpGame();
-		
+		setLocation(300, 10);
 		add(screen);
 		gameLayout.show(screen, "Main Menu");
 		
 		pack();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 	}
@@ -94,19 +100,19 @@ public class GameEngine extends JFrame {
 		mainPanel.setLayout(new GridLayout(1, 3));
 		play = new JButton("Start Game");
 		play.setFont(new Font("TimesRoman", Font.BOLD, 20));
-		play.setPreferredSize(new Dimension(WIDTH / 4, LENGTH / 8));
+		play.setPreferredSize(new Dimension(WIDTH / 4, HEIGHT / 8));
 		play.addActionListener(new MainMenuListener());
 		button1.add(play);
 		
 		instruction = new JButton("Instruction");
 		instruction.setFont(new Font("TimesRoman", Font.BOLD, 20));
-		instruction.setPreferredSize(new Dimension(WIDTH / 4, LENGTH / 8));
+		instruction.setPreferredSize(new Dimension(WIDTH / 4, HEIGHT / 8));
 		instruction.addActionListener(new MainMenuListener());
 		button2.add(instruction);
 		
 		exit = new JButton("Exit");
 		exit.setFont(new Font("TimesRoman", Font.BOLD, 20));
-		exit.setPreferredSize(new Dimension(WIDTH / 4, LENGTH / 8));
+		exit.setPreferredSize(new Dimension(WIDTH / 4, HEIGHT / 8));
 		exit.addActionListener(new ExitListener());
 		button3.add(exit);
 		
@@ -123,11 +129,14 @@ public class GameEngine extends JFrame {
 		board = new GameBoard();
 		questionBank = new QuestionBank(gameLevel);
 		board.initialize();
+		game.setLayout(new GridLayout(1, 2));
+		JPanel panel = new JPanel();
 		display = new DisplayGUI(board);
-		
 		display.setQuestionField(questionBank.getRandomQuestion());
+		panel.add(display);
 		game.add(board, BorderLayout.WEST);
-		game.add(display, BorderLayout.EAST);
+		game.add(panel, BorderLayout.EAST);
+	
 		
 		screen.add(game, "Game");
 	}
@@ -146,11 +155,11 @@ public class GameEngine extends JFrame {
 		g.setFont(new Font("TimesRoman", Font.BOLD, 80));
 		if(isStarted)
 		{
-			g.drawString("", WIDTH / 2 - MARGIN, LENGTH / 4);
+			g.drawString("", WIDTH / 2 - MARGIN, HEIGHT / 4);
 		}
 		else
 		{
-		g.drawString("MAZE RUNNER", WIDTH / 2 - MARGIN, LENGTH / 4);
+		g.drawString("MAZE RUNNER", WIDTH / 2 - MARGIN, HEIGHT / 4);
 		}
 	}
 	
@@ -183,6 +192,23 @@ public class GameEngine extends JFrame {
 			else if(e.getSource() == instruction) {
 				getInstructions();
 			}
+		}
+	}
+	
+	private class ComponentListener extends ComponentAdapter {
+		@Override
+		public void componentResized(ComponentEvent e) {
+			Dimension temp = new Dimension(getWidth(), getHeight());
+
+			board.setCellSize((int)((temp.width + temp.height)/ (board.getRows() + board.getCols()) * 0.60));
+			board.setBounds(5, 5, temp.width / 2, temp.height);
+			display.setBounds(temp.width / 10, temp.height / 4, temp.width / 2, temp.height);
+			game.setSize(temp);
+			GameEngine.WIDTH = temp.width;
+			GameEngine.HEIGHT = temp.height;
+
+			repaint();
+			super.componentResized(e);
 		}
 	}
 	

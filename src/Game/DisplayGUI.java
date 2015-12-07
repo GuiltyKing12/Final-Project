@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -29,11 +30,11 @@ public class DisplayGUI extends JPanel{
 	
 	public DisplayGUI(GameBoard board) {
 		//setLayout(new FlowLayout());
-		setLayout(new GridLayout(2, 1));
-		setPreferredSize(new Dimension(GameEngine.WIDTH, GameEngine.LENGTH/5));
+		setLayout(new BorderLayout(3, 1));
 		this.board = board;
-		
 		mainPanel = new JPanel();
+		mainPanel.setLayout(new BorderLayout(3, 1));
+		
 		setPlayerInfo();
 		setPlayerControls();
 		add(mainPanel);
@@ -42,7 +43,7 @@ public class DisplayGUI extends JPanel{
 	
 	public void setPlayerInfo() {
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(2, 2, margin, margin));
+		panel.setLayout(new GridLayout(3, 1, margin, margin));
 		JTextField playerName = new JTextField(15);
 		JTextField playerScore = new JTextField(10);
 		JTextField test = new JTextField();
@@ -50,8 +51,6 @@ public class DisplayGUI extends JPanel{
 		playerName.setText(board.getPlayer().getName());
 		playerName.setEditable(false);
 		panel.add(playerName);
-		
-		panel.add(new JPanel());
 		
 		playerScore.setBorder(new TitledBorder(new EtchedBorder(), "Score"));
 		String score = Integer.toString(board.getPlayer().getScore());
@@ -63,23 +62,26 @@ public class DisplayGUI extends JPanel{
 		test.setBorder(new TitledBorder(new EtchedBorder(), "Lives"));
 		test.setEditable(false);
 		panel.add(test);
-		mainPanel.add(panel);
+		mainPanel.add(panel, BorderLayout.NORTH);
 		
 	}
 	
 	public void setQuestionDisplay() {
+		JPanel panel = new JPanel();
 		question = new JTextArea(1,20);
 		question.setText("This is a question!!!");
 		question.setBorder(new TitledBorder(new EtchedBorder(), "Question"));
 		question.setEditable(false);
 		question.setLineWrap(true);
 		question.setWrapStyleWord(true);
-		add(question);
+		panel.add(question);
+		mainPanel.add(panel, BorderLayout.CENTER);
 	}
 	
 	public void setPlayerControls() {
 		JPanel playerControl = new JPanel();
-		playerControl.setLayout(new BorderLayout());
+		//playerControl.setPreferredSize(new Dimension(getWidth() / 2, getHeight() / 2));
+		playerControl.setLayout(new BorderLayout(1, 3));
 		up = new JButton("UP");
 		up.addActionListener(new moveControlListener());
 		down = new JButton("DOWN");
@@ -90,11 +92,11 @@ public class DisplayGUI extends JPanel{
 		right.addActionListener(new moveControlListener());
 		
 		playerControl.add(up, BorderLayout.NORTH);
-		playerControl.add(down, BorderLayout.SOUTH);
+		playerControl.add(down, BorderLayout.CENTER);
 		playerControl.add(left, BorderLayout.WEST);
 		playerControl.add(right, BorderLayout.EAST);
 		
-		mainPanel.add(playerControl);
+		mainPanel.add(playerControl, BorderLayout.SOUTH);
 	}
 
 	public void setQuestionField(Question question) {
