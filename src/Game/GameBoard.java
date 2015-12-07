@@ -133,14 +133,16 @@ public class GameBoard extends JPanel {
 			// Implement logic - Do we want a dialogue to pop up giving player an option to select this answer or do something else.
 			System.out.println("Player: " + playerPos.x + " " + playerPos.y + " isSoln: " + isPositionSolutionCell((int)playerPos.y, (int)playerPos.x) + " -> IMPLEMENT new dialogue asking whether player wants to submit this answer or not.");
 		}
+		
 	}
+	
+	
 	
 	private void initializeSolutionCellList() {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
 				if (board[i][j].getIsSolutionCell()) {
 					solutionCells.add(board[i][j]);
-
 				}
 			}
 		}

@@ -10,10 +10,12 @@ public class BoardCell {
 	private char initial;				// Read from the boardConfig File
 	private char secondary;				// Read from the boardConfig File
 	private Fraction fraction;
+	private boolean hasFraction;
 	
 	public BoardCell(char initial, int row, int col) {
 		this.row = row;
 		this.col = col;
+		this.hasFraction = false;
 		this.initial = initial;
 		this.isSolutionCell = (initial == 'A') ? true : false;	// Sets isSolutionCell to true if (initial == 'A')
 		this.secondary = '\0';
@@ -59,6 +61,22 @@ public class BoardCell {
 	
 	public char getInitial() {
 		return initial;
+	}
+
+	public boolean getHasFraction() {
+		return hasFraction;
+	}
+
+	public void setHasFraction(boolean hasFraction) {
+		this.hasFraction = hasFraction;
+	}
+
+	public Fraction getFraction() {
+		return fraction;
+	}
+
+	public void setFraction(Fraction fraction) {
+		this.fraction = fraction;
 	}
 
 }

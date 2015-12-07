@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -44,33 +45,58 @@ public class GameEngine extends JFrame {
 	private int gameLevel;
 	
 	public GameEngine() {	
-		initialize();
+		initializeGame();
+		initializeGUI();
 	}
 	
+	public void initializeGame() {
+		board = new GameBoard();
+		questionBank = new QuestionBank(gameLevel);
+		gameLevel = 0;
+	}
 	
-	public void initialize() {
+	public void initializeGUI() {
+		initializeGUIVariables();
+		formatGUI();
+		renderGUI();
+	}
+	
+	public void initializeGUIVariables() {
 		gameLayout = new CardLayout();
 		screen = new JPanel();
 		mainMenu = new JPanel();
 		game = new JPanel();
+		display = new DisplayGUI(board);
 		componentListener = new ComponentListener();
 		isStarted=false;
-		
+	}
+	
+	private void formatGUI() {
 		gameLayout.setHgap(10);
 		screen.setLayout(gameLayout);
 		
-		setTitle("Maze Runner");
 		getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
-		//setLayout(new BorderLayout(1, 2));
+		setTitle("Maze Runner");
+		display.setQuestionField(questionBank.getRandomQuestion());
+		
 		setUpMenuBar();
 		setUpMainMenu();
 		setUpGame();
+		
 		setLocation(300, 10);
+	}
+	
+	private void addGUIListeners() {
+		this.addComponentListener(componentListener);
+		board.addComponentListener(componentListener);
+		
+	}
+	
+	private void renderGUI() {
 		add(screen);
 		gameLayout.show(screen, "Main Menu");
 		
-		this.addComponentListener(componentListener);
-		board.addComponentListener(componentListener);
+		addGUIListeners();
 		
 		pack();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -125,18 +151,14 @@ public class GameEngine extends JFrame {
 	}
 	
 	public void setUpGame() {
-		gameLevel = 0;
-		board = new GameBoard();
-		questionBank = new QuestionBank(gameLevel);
-		board.initialize();
-		game.setLayout(new GridLayout(1, 1));
+		
 		JPanel panel = new JPanel();
-		display = new DisplayGUI(board);
-		display.setQuestionField(questionBank.getRandomQuestion());
+		game.setLayout(new GridLayout(1, 1));
+		
+		
 		panel.add(display);
 		game.add(board);
 		game.add(panel);
-	
 		
 		screen.add(game, "Game");
 	}
@@ -177,6 +199,27 @@ public class GameEngine extends JFrame {
 				+ "\n You must go through the maze and find the correct answers, for every wrong answer you lose a life. \n"
 				+ " You only have three lives, so be careful. \n You can also find items that give you back one life.";
 		JOptionPane.showMessageDialog(this, message, "Instructions", JOptionPane.INFORMATION_MESSAGE );
+	}
+	
+	public void addFractionsToSolutionCells() {
+		ArrayList<Fraction> temp = new ArrayList<Fraction>();
+		board.getSolutionCells().clear();
+		
+		for (Question q : questionBank.getQuestions()) {
+			temp.add(q.getSolution());
+		}
+		
+		for (Fraction f : temp) {
+			for (int i = 0; i < board.getSolutionCells().size(); i++) {
+				BoardCell solutionCell = board.getSolutionCells().get(i);
+				
+				if (!solutionCell.getHasFraction()) {
+					solutionCell.setFraction(f);
+					solutionCell.setHasFraction(true);
+					break;
+				}
+			}
+		}
 	}
 	
 	private class ExitListener implements ActionListener {
