@@ -1,6 +1,7 @@
 package Game;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -18,6 +19,8 @@ import javax.swing.JPanel;
 public class GameBoard extends JPanel {
 	private int rows = 25;
 	private int cols = 25;
+	private static final int WIDTH = 1000;
+	private static final int LENGTH = 950;
 	private ArrayList<String> boardConfigFile;
 	private String legendConfigFile;
 	private BoardCell[][] board;
@@ -26,6 +29,7 @@ public class GameBoard extends JPanel {
 	private Player player;
 	
 	public GameBoard() {
+		setPreferredSize(new Dimension(WIDTH, LENGTH));
 		player = new Player();
 		initialize();
 	}
