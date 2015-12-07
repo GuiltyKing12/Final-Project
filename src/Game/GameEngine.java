@@ -2,7 +2,12 @@ package Game;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,8 +20,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class GameEngine extends JFrame {
-	public static final int WIDTH = 630;
-	public static final int LENGTH = 950;
+	public static final int WIDTH = 1250;
+	public static final int LENGTH = 1000;
+	private static final int MARGIN = 300;
 	
 	private GameBoard board;
 
@@ -77,16 +83,36 @@ public class GameEngine extends JFrame {
 	}
 	
 	public void setUpMainMenu() {
-		play = new JButton("Start Game");
-		play.addActionListener(new MainMenuListener());
-		instruction = new JButton("Instruction");
-		instruction.addActionListener(new MainMenuListener());
-		exit = new JButton("Exit");
-		exit.addActionListener(new ExitListener());
+		mainMenu.setLayout(new GridLayout(0, 1));
+		JPanel mainPanel = new JPanel();
+		JPanel button1 = new JPanel();
+		JPanel button2 = new JPanel();
+		JPanel button3 = new JPanel();
 		
-		mainMenu.add(play);
-		mainMenu.add(instruction);
-		mainMenu.add(exit);
+		mainMenu.add(new JPanel());
+		mainPanel.setLayout(new GridLayout(1, 3));
+		play = new JButton("Start Game");
+		play.setFont(new Font("TimesRoman", Font.BOLD, 20));
+		play.setPreferredSize(new Dimension(WIDTH / 4, LENGTH / 8));
+		play.addActionListener(new MainMenuListener());
+		button1.add(play);
+		
+		instruction = new JButton("Instruction");
+		instruction.setFont(new Font("TimesRoman", Font.BOLD, 20));
+		instruction.setPreferredSize(new Dimension(WIDTH / 4, LENGTH / 8));
+		instruction.addActionListener(new MainMenuListener());
+		button2.add(instruction);
+		
+		exit = new JButton("Exit");
+		exit.setFont(new Font("TimesRoman", Font.BOLD, 20));
+		exit.setPreferredSize(new Dimension(WIDTH / 4, LENGTH / 8));
+		exit.addActionListener(new ExitListener());
+		button3.add(exit);
+		
+		mainPanel.add(button1);
+		mainPanel.add(button2);
+		mainPanel.add(button3);
+		mainMenu.add(mainPanel);
 		
 		screen.add(mainMenu, "Main Menu");
 	}
@@ -99,7 +125,7 @@ public class GameEngine extends JFrame {
 		display = new DisplayGUI(board);
 		
 		display.setQuestionField(questionBank.getRandomQuestion());
-		game.add(board, BorderLayout.CENTER);
+		game.add(board, BorderLayout.WEST);
 		game.add(display, BorderLayout.EAST);
 		
 		screen.add(game, "Game");
@@ -113,9 +139,16 @@ public class GameEngine extends JFrame {
 		
 	}
 	
+	public void paint(Graphics g) {
+		super.paint(g);
+		g.setColor(Color.RED);
+		g.setFont(new Font("TimesRoman", Font.BOLD, 80));
+		g.drawString("MAZE RUNNER", WIDTH / 2 - MARGIN, LENGTH / 4);
+	}
+	
 	public void getInstructions() {
-		String message = "Welcome to Maze Runner! \n In maze runner your objective is to esacpe the maze by answering \n "
-				+ "fraction questions.  \n A question will be given and the answer will be somewhere in the maze.  "
+		String message = "Welcome to Maze Runner! \n In maze runner your objective is to esacpe the maze by answering fraction questions. "
+				+ "\n A question will be given and the answer will be somewhere in the maze.  "
 				+ "\n You must go through the maze and find the correct answers, for every wrong answer you lose a life. \n"
 				+ " You only have three lives, so be careful. \n You can also find items that give you back one life.";
 		JOptionPane.showMessageDialog(this, message, "Instructions", JOptionPane.INFORMATION_MESSAGE );
