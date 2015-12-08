@@ -131,23 +131,43 @@ public class GameBoard extends JPanel {
 	public void showGuessDialog() {
 		int playerXPos = (int)player.getPosition().x;
 		int playerYPos = (int)player.getPosition().y;
-		
+		Question question = GameEngine.getActiveQuestion();
 		Fraction guess = getCellAt(playerYPos, playerXPos).getFraction();
-		Fraction activeSolution = GameEngine.getActiveQuestion().getSolution();
+		Fraction activeSolution = question.getSolution();
 		
 		if (isPositionSolutionCell(playerYPos, playerXPos)) {
 			repaint();
 			int reply = JOptionPane.showConfirmDialog(null, "Is this your answer?", "No", JOptionPane.YES_NO_OPTION);
-				if(reply == JOptionPane.YES_OPTION) {
-				if (guess.getValue() == activeSolution.getValue()) {		
-					System.out.println(guess.toString() + " == " + activeSolution.toString());
-					player.setScore(player.getScore() + 1);
+			if(reply == JOptionPane.YES_OPTION) {
+				if (question.getType() == QuestionType.LESS) {
+					if (guess.isLessThan(activeSolution.getValue())) {
+						System.out.println(guess.toString() + " < " + activeSolution.toString());
+						player.setScore(player.getScore() + 1);
+					}
+					else {
+						System.out.println(guess.toString() + " !< " + activeSolution.toString());
+						player.setLives(player.getLives() - 1);
+					}
+				}
+				else if (question.getType() == QuestionType.GREATER){
+					if (guess.isGreaterThan(activeSolution.getValue())) {
+						System.out.println(guess.toString() + " > " + activeSolution.toString());
+						player.setScore(player.getScore() + 1);
+					}
+					else {
+						System.out.println(guess.toString() + " !> " + activeSolution.toString());
+						player.setLives(player.getLives() - 1);
+					}
 				}
 				else {
-					System.out.println(guess.toString() + " != " + activeSolution.toString());
-					System.out.println(player.getLives());
-					player.setLives(player.getLives() - 1);
-					System.out.println(player.getLives());
+					if (guess.getValue() == activeSolution.getValue()) {		
+						System.out.println(guess.toString() + " == " + activeSolution.toString());
+						player.setScore(player.getScore() + 1);
+					}
+					else {
+						System.out.println(guess.toString() + " != " + activeSolution.toString());
+						player.setLives(player.getLives() - 1);
+					}
 				}
 			}
 		}

@@ -52,9 +52,6 @@ public class DisplayGUI extends JPanel{
 		playerScore = new JTextField(10);
 		test = new JTextField(10);
 		
-		JTextField playerScore = new JTextField(10);
-		JTextField test = new JTextField();
-		
 		playerName.setText(board.getPlayer().getName());
 		playerName.setEditable(false);
 		panel.add(playerName);
@@ -117,7 +114,7 @@ public class DisplayGUI extends JPanel{
 	
 	public void setLives() {
 		test.setText(String.valueOf(board.getPlayer().getLives()));
-		System.out.println(String.valueOf(board.getPlayer().getLives()));
+		//System.out.println(String.valueOf(board.getPlayer().getLives()));
 	}
 	
 	public void setScore() {
@@ -128,6 +125,7 @@ public class DisplayGUI extends JPanel{
 	public void updateDisplay() {
 		setLives();
 		setScore();
+		repaint();
 	}
 	
 	public Boolean checkCanMove(int col, int row) {

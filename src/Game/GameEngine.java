@@ -242,6 +242,8 @@ public class GameEngine extends JFrame {
 		}
 	}
 	
+	
+	
 	public static Question getActiveQuestion() {
 		return activeQuestion;
 	}

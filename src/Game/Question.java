@@ -117,25 +117,31 @@ public class Question {
 				
 			case WORD1:
 				Fraction temp = fraction1;
-				fraction1 = new Fraction(20, 1);
+				fraction1 = new Fraction(1, 1);
 				fraction2 = temp;
 				solution = subtract();
 				break;
 				
 			case WORD2:
+			case WORD3:
 				Fraction tempFrac = fraction1;
 				fraction1 = new Fraction(20, 1);
 				fraction2 = tempFrac;
 				solution = subtract();
 				break;
 				
-			case WORD3:
-				break;
-				
 			case WORD4:
+				Fraction tempFrac2 = fraction1;
+				fraction1 = new Fraction(24, 1);
+				fraction2 = tempFrac2;
+				solution = subtract();
 				break;
 				
 			case WORD5:
+				Fraction tempFrac3 = fraction1;
+				fraction1 = new Fraction(20, 1);
+				fraction2 = tempFrac3;
+				solution = subtract();
 				break;
 		}
 	}
@@ -234,4 +240,9 @@ public class Question {
 	public void setHasBeenDrawn(boolean hasBeenDrawn) {
 		this.hasBeenDrawn = hasBeenDrawn;
 	}
+	
+	public QuestionType getType() {
+		return type;
+	}
+	
 }
