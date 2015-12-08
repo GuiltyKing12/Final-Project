@@ -136,6 +136,7 @@ public class GameBoard extends JPanel {
 		Fraction activeSolution = GameEngine.getActiveQuestion().getSolution();
 		
 		if (isPositionSolutionCell(playerYPos, playerXPos)) {
+			repaint();
 			int reply = JOptionPane.showConfirmDialog(null, "Is this your answer?", "No", JOptionPane.YES_NO_OPTION);
 				if(reply == JOptionPane.YES_OPTION) {
 				if (guess.getValue() == activeSolution.getValue()) {		
