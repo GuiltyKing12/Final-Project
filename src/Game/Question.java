@@ -46,7 +46,7 @@ public class Question {
 		int randNumerator = rand.nextInt(initial + levelScaling) + 1;
 		int randDenominator = rand.nextInt((initial - 1) + levelScaling) + 2;
 		
-		if (type.toString().contains("WORD")) {
+		if (type == QuestionType.WORD1 || type == QuestionType.WORD2 || type == QuestionType.WORD3 || type == QuestionType.WORD4 || type == QuestionType.WORD5) {
 			while (randNumerator > randDenominator) {
 				randNumerator = rand.nextInt(initial + levelScaling) + 1;
 			}
