@@ -35,6 +35,7 @@ public class DisplayGUI extends JPanel{
 		//setLayout(new FlowLayout());
 		setLayout(new BorderLayout(3, 1));
 		this.board = board;
+		
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout(3, 1));
 		

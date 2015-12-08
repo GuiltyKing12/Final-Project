@@ -56,27 +56,7 @@ public class QuestionBank {
 		wordQuestions.add(new Question("If every day has 24 hours in it and you spend {FRACTION1} of your day playing video games, how much of the day do you have left to play 'MORE' video games?", QuestionType.WORD, currentLevel));
 		wordQuestions.add(new Question("Mr. Smith's house is 20 feet long and 30 feet wide. Mr. Bob's house is 2 times as long and {FRACTION1} as wide. What is the total area Mr. Bob's house?", QuestionType.WORD, currentLevel));
 	}
-	
-	public Fraction addSolution(int numerator1,int denominator1,int numerator2,int denominator2){
-		int newNumerator=numerator1*denominator2+denominator1*numerator2;
-		int newDenominator=denominator1*denominator2;
-		Fraction temp = new Fraction (newNumerator,newDenominator);
-		return temp;
-	}
-	
-	public Fraction minusSolution(int numerator1,int denominator1,int numerator2,int denominator2){
-		int newNumerator=numerator1*denominator2-denominator1*numerator2;
-		int newDenominator=denominator1*denominator2;
-		Fraction temp = new Fraction (newNumerator,newDenominator);
-		return temp;
-	}
-	
-	public Fraction multiplySolution(int numerator1,int denominator1,int oneInt){
-		int newNumerator=numerator1*oneInt;
-		Fraction temp = new Fraction (newNumerator,denominator1);
-		return temp;
-	}
-	
+
 	public ArrayList<Question> getQuestions() {
 		return questions;
 	}

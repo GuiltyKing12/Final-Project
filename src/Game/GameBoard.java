@@ -20,8 +20,8 @@ import com.sun.javafx.geom.Vec2d;
 public class GameBoard extends JPanel {
 	private int rows = 25;
 	private int cols = 25;
-	private static final int WIDTH = 1000;
-	private static final int LENGTH = 950;
+	private static final int WIDTH = 1200;
+	private static final int LENGTH = 1100;
 	private int cellSize = 25;
 	private ArrayList<String> boardConfigFiles;
 	private String legendConfigFile;
@@ -32,11 +32,11 @@ public class GameBoard extends JPanel {
 	
 	public GameBoard() {
 		setPreferredSize(new Dimension(WIDTH, LENGTH));
-		player = new Player();
 		initialize();
 	}
 	
 	public void initialize() {
+		player = new Player();
 		this.boardConfigFiles = new ArrayList<String>();
 		this.solutionCells = new ArrayList<BoardCell>();
 		this.legend = new HashMap<Character, String>();
@@ -127,13 +127,13 @@ public class GameBoard extends JPanel {
 	}
 	
 	public void updateGame() {
-		Vec2d playerPos = getPlayer().getPosition();
+		int playerXPos = (int)player.getPosition().x;
+		int playerYPos = (int)player.getPosition().y;
 		
-		if (isPositionSolutionCell((int)(playerPos.y), (int)(playerPos.x))) {		
+		if (isPositionSolutionCell(playerYPos, playerXPos)) {		
 			// Implement logic - Do we want a dialogue to pop up giving player an option to select this answer or do something else.
-			System.out.println("Player: " + playerPos.x + " " + playerPos.y + " isSoln: " + isPositionSolutionCell((int)playerPos.y, (int)playerPos.x) + " -> IMPLEMENT new dialogue asking whether player wants to submit this answer or not.");
+			System.out.println(board[playerXPos][playerYPos].getFraction().toString()+ " -> IMPLEMENT new dialogue asking whether player wants to submit this answer or not.");
 		}
-		
 	}
 	
 	
@@ -164,19 +164,18 @@ public class GameBoard extends JPanel {
 	
 	@Override
 	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
+		super.paintComponent(g);		
 		
 		for(int i = 0; i < rows; i++) {
 			for(int j = 0; j < cols; j++) {
-				board[i][j].draw(g, cellSize);
+				if (board[i][j].getIsSolutionCell()) {
+					board[i][j].draw(g, cellSize, true);
+				}
+				else {
+					board[i][j].draw(g, cellSize, false);
+				}
 			}
 		}
-		
-		g.setColor(Color.BLACK);
-		for(int i = 0; i < solutionCells.size(); i++) {
-			g.drawString("x", (int)(solutionCells.get(i).getRow() * cellSize + 0.45 * cellSize), (int)(solutionCells.get(i).getCol() * cellSize + 0.65 * cellSize));
-		}
-		
 		player.draw(g, cellSize);
 	}
 	

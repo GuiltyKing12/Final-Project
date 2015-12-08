@@ -15,13 +15,14 @@ public class BoardCell {
 	public BoardCell(char initial, int row, int col) {
 		this.row = row;
 		this.col = col;
+		this.fraction = new Fraction();
 		this.hasFraction = false;
 		this.initial = initial;
 		this.isSolutionCell = (initial == 'A') ? true : false;	// Sets isSolutionCell to true if (initial == 'A')
 		this.secondary = '\0';
 	}
 
-	public void draw(Graphics g, int size) {
+	public void draw(Graphics g, int size, boolean writeFraction) {
 		switch(initial) {
 			case 'N': g.setColor(Color.BLACK);
 					  break;
@@ -36,12 +37,19 @@ public class BoardCell {
 		
 		g.setColor(Color.GRAY);
 		g.drawRect(row*size, col*size, size, size);
+		
+		if (hasFraction && writeFraction) {
+			g.setColor(Color.BLACK);
+			g.drawString(String.valueOf(fraction.getNumerator()), (int)(row * size + size * 0.35), (int)(col * size  + size * 0.45));
+			g.drawString("_" + "__", (int)(row * size + size * 0.15), (int)(col * size  + size * 0.5));
+			g.drawString(String.valueOf(fraction.getDenominator()), (int)(row * size + size * 0.35), (int)(col * size  + size * 0.98));
+		}
 	}
 	
 	public int getRow() {
 		return row;
 	}
-	
+	 
 	public int getCol() {
 		return col;
 	}

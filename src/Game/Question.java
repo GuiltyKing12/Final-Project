@@ -12,11 +12,17 @@ public class Question {
 	private QuestionType type;
 	private Fraction solution;
 	Random rand = new Random();
+	private boolean hasBeenDrawn;
+	
+	public Question() {
+		
+	}
 	
 	public Question(String text, QuestionType type, int level) {
 		this.rawText = text;
 		this.type = type;
 		this.level = level;
+		this.hasBeenDrawn = false;
 		solution = new Fraction();
 		generateFractions();
 		formatText();
@@ -51,10 +57,15 @@ public class Question {
 	
 	private void formatText() {
 		String firstFractionText = fraction1.getNumerator() + "/" + fraction1.getDenominator();
-		String secondFractionText = fraction2.getNumerator() + "/" + fraction2.getDenominator();
 		rawText = rawText.replace("{FRACTION1}", firstFractionText);
-		rawText = rawText.replace("{FRACTION2}", secondFractionText);
 		
+		if (fraction2 != null) {
+			String secondFractionText = fraction2.getNumerator() + "/" + fraction2.getDenominator();
+			rawText = rawText.replace("{FRACTION2}", secondFractionText);			
+		}
+		else {
+			
+		}
 		if (fraction3 != null) {
 			String thirdFractionText = fraction3.getNumerator() + "/" + fraction3.getDenominator();
 			rawText = rawText.replace("{FRACTION3}", thirdFractionText);
@@ -112,14 +123,14 @@ public class Question {
 	}
 	
 	private Fraction less() {
-		if (fraction1.isLessThan(fraction2)) {
+		if (fraction1.isLessThan(fraction2.value)) {
 			return new Fraction(1, 1);
 		}
 		return new Fraction(0, 1);
 	}
 	
 	private Fraction greater() {
-		if (fraction1.isGreaterThan(fraction2)) {
+		if (fraction1.isGreaterThan(fraction2.value)) {
 			return new Fraction(1, 1);
 		}
 		return new Fraction(0, 1);
@@ -196,5 +207,13 @@ public class Question {
 	
 	public Fraction getSolution() {
 		return solution;
+	}
+
+	public boolean isHasBeenDrawn() {
+		return hasBeenDrawn;
+	}
+
+	public void setHasBeenDrawn(boolean hasBeenDrawn) {
+		this.hasBeenDrawn = hasBeenDrawn;
 	}
 }

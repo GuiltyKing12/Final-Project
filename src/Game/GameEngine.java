@@ -47,12 +47,18 @@ public class GameEngine extends JFrame {
 	public GameEngine() {	
 		initializeGame();
 		initializeGUI();
+		
+		
+
 	}
 	
 	public void initializeGame() {
-		board = new GameBoard();
 		questionBank = new QuestionBank(gameLevel);
+		board = new GameBoard();
 		gameLevel = 0;
+		
+		addFractionsToSolutionCells();
+
 	}
 	
 	public void initializeGUI() {
@@ -66,7 +72,11 @@ public class GameEngine extends JFrame {
 		screen = new JPanel();
 		mainMenu = new JPanel();
 		game = new JPanel();
+		
+	
 		display = new DisplayGUI(board);
+		
+		
 		componentListener = new ComponentListener();
 		isStarted=false;
 	}
@@ -203,7 +213,7 @@ public class GameEngine extends JFrame {
 	
 	public void addFractionsToSolutionCells() {
 		ArrayList<Fraction> temp = new ArrayList<Fraction>();
-		board.getSolutionCells().clear();
+		boolean cellsContainZero = false;
 		
 		for (Question q : questionBank.getQuestions()) {
 			temp.add(q.getSolution());
@@ -214,10 +224,26 @@ public class GameEngine extends JFrame {
 				BoardCell solutionCell = board.getSolutionCells().get(i);
 				
 				if (!solutionCell.getHasFraction()) {
-					solutionCell.setFraction(f);
+					if (f.equals(0.0) && !cellsContainZero) {
+						solutionCell.setFraction(f);
+						cellsContainZero = true;
+						
+					}
+					else if (f.equals(0.0) && cellsContainZero) {
+						solutionCell.setFraction(new Question().getRandomFraction());
+					}
+					else if (!f.equals(0.0)) {
+						solutionCell.setFraction(f);
+					}
 					solutionCell.setHasFraction(true);
 					break;
 				}
+			}
+		}
+		
+		for (BoardCell c : board.getSolutionCells()) {
+			if (!c.getHasFraction()) {
+				c.setFraction(new Question().getRandomFraction());
 			}
 		}
 	}
@@ -246,7 +272,7 @@ public class GameEngine extends JFrame {
 		public void componentResized(ComponentEvent e) {
 			Dimension temp = new Dimension(getWidth(), getHeight());
 
-			board.setCellSize((int)((temp.width + temp.height)/ (board.getRows() + board.getCols()) * 0.6));
+			board.setCellSize((int)((temp.width + temp.height)/ (board.getRows() + board.getCols()) * 0.65));
 			board.setBounds(5, 5, temp.width / 2, temp.height);
 			display.setBounds(temp.width / 10, temp.height / 4, temp.width / 2, temp.height);
 			game.setSize(temp);

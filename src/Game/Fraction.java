@@ -92,17 +92,24 @@ public class Fraction {
 		return this.numerator == fraction.getNumerator() && this.denominator == fraction.getDenominator();
 	}
 	
-	public boolean isGreaterThan(Fraction fraction) {
-		return ((double) this.numerator / this.denominator) > ((double) fraction.getNumerator() / fraction.getDenominator());
+	public boolean equals(double value) {
+		return this.value == value;
 	}
 	
-	public boolean isLessThan(Fraction fraction) {
-		return ((double) this.numerator / this.denominator) < ((double) fraction.getNumerator() / fraction.getDenominator());
+	public boolean isGreaterThan(double value) {
+		if (this.value == 0 && value == 0) {
+			return false;
+		}
+		return this.value > value;
+	}
+	
+	public boolean isLessThan(double value) {
+		return this.value < value;
 	}
 
 	@Override
 	public String toString() {
 		//String temp = String.valueOf(numerator) + " / " + String.valueOf(denominator);
-		return (numerator + " / " + denominator);
+		return (numerator + "/" + denominator);
 	}
 }
