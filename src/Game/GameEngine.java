@@ -44,6 +44,7 @@ public class GameEngine extends JFrame {
 	private QuestionBank questionBank;
 	private static Question activeQuestion;
 	private int gameLevel;
+	private final static int POINTS_TO_ADVANCE=3;
 	
 	public GameEngine() {	
 		initializeGame();
@@ -172,7 +173,7 @@ public class GameEngine extends JFrame {
 	}
 	
 	public void advanceNextLevel() {
-		if(board.getPlayer().getScore() == 3) {
+		if(board.getPlayer().getScore() == POINTS_TO_ADVANCE) {
 			//board.initializeLevel();
 		}
 	}
