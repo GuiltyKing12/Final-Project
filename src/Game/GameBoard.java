@@ -149,8 +149,6 @@ public class GameBoard extends JPanel {
 		}
 	}
 	
-	
-	
 	private void initializeSolutionCellList() {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
