@@ -126,13 +126,20 @@ public class GameBoard extends JPanel {
 		}
 	}
 	
-	public void updateGame() {
+	public void showGuessDialog() {
 		int playerXPos = (int)player.getPosition().x;
 		int playerYPos = (int)player.getPosition().y;
 		
-		if (isPositionSolutionCell(playerYPos, playerXPos)) {		
-			// Implement logic - Do we want a dialogue to pop up giving player an option to select this answer or do something else.
-			System.out.println(board[playerXPos][playerYPos].getFraction().toString()+ " -> IMPLEMENT new dialogue asking whether player wants to submit this answer or not.");
+		Fraction guess = getCellAt(playerYPos, playerXPos).getFraction();
+		Fraction activeSolution = GameEngine.getActiveQuestion().getSolution();
+		
+		if (isPositionSolutionCell(playerYPos, playerXPos)) {
+			if (guess.getValue() == activeSolution.getValue()) {		
+				System.out.println(guess.toString() + " == " + activeSolution.toString());
+			}
+			else {
+				System.out.println(guess.toString() + " != " + activeSolution.toString());
+			}
 		}
 	}
 	
@@ -164,7 +171,8 @@ public class GameBoard extends JPanel {
 	
 	@Override
 	public void paintComponent(Graphics g) {
-		super.paintComponent(g);		
+		super.paintComponent(g);
+		
 		
 		for(int i = 0; i < rows; i++) {
 			for(int j = 0; j < cols; j++) {

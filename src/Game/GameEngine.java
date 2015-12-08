@@ -42,23 +42,21 @@ public class GameEngine extends JFrame {
 	private Boolean isStarted;
 	private ComponentListener componentListener;
 	private QuestionBank questionBank;
+	private static Question activeQuestion;
 	private int gameLevel;
 	
 	public GameEngine() {	
 		initializeGame();
 		initializeGUI();
-		
-		
-
 	}
 	
 	public void initializeGame() {
 		questionBank = new QuestionBank(gameLevel);
+		activeQuestion = questionBank.getRandomQuestion();
 		board = new GameBoard();
 		gameLevel = 0;
 		
 		addFractionsToSolutionCells();
-
 	}
 	
 	public void initializeGUI() {
@@ -72,11 +70,7 @@ public class GameEngine extends JFrame {
 		screen = new JPanel();
 		mainMenu = new JPanel();
 		game = new JPanel();
-		
-	
 		display = new DisplayGUI(board);
-		
-		
 		componentListener = new ComponentListener();
 		isStarted=false;
 	}
@@ -87,7 +81,7 @@ public class GameEngine extends JFrame {
 		
 		getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setTitle("Maze Runner");
-		display.setQuestionField(questionBank.getRandomQuestion());
+		display.setQuestionField(activeQuestion);
 		
 		setUpMenuBar();
 		setUpMainMenu();
@@ -246,6 +240,14 @@ public class GameEngine extends JFrame {
 				c.setFraction(new Question().getRandomFraction());
 			}
 		}
+	}
+	
+	public static Question getActiveQuestion() {
+		return activeQuestion;
+	}
+	
+	public static void setActiveQuestion(Question question) {
+		activeQuestion = question;
 	}
 	
 	private class ExitListener implements ActionListener {

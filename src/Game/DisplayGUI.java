@@ -134,8 +134,10 @@ public class DisplayGUI extends JPanel{
 	
 	private class moveControlListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
+			
 			int currentCol = (int) board.getPlayer().getPosition().y;
 			int currentRow = (int) board.getPlayer().getPosition().x;
+			
 			if(e.getSource() == up && checkCanMove(currentRow - 1, currentCol)) {
 				board.getPlayer().move(new Vec2d(currentRow - 1, currentCol));
 			}
@@ -149,8 +151,7 @@ public class DisplayGUI extends JPanel{
 				board.getPlayer().move(new Vec2d(currentRow, currentCol + 1));
 			}
 			
-			board.updateGame();
-			
+			board.showGuessDialog();
 			board.repaint();
 		}
 	}

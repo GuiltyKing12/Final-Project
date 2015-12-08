@@ -1,6 +1,7 @@
 package Game;
 
 public class Fraction {
+	static final double EPSILON = 0.0001;
 	int numerator;
 	int denominator;
 	double value;
@@ -89,11 +90,11 @@ public class Fraction {
 	}
 	
 	public boolean equals(Fraction fraction) {
-		return this.numerator == fraction.getNumerator() && this.denominator == fraction.getDenominator();
+		return this.value - fraction.getValue() <= EPSILON;
 	}
 	
 	public boolean equals(double value) {
-		return this.value == value;
+		return this.value - value <= EPSILON;
 	}
 	
 	public boolean isGreaterThan(double value) {
