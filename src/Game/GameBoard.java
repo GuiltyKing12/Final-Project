@@ -141,10 +141,13 @@ public class GameBoard extends JPanel {
 				if(reply == JOptionPane.YES_OPTION) {
 				if (guess.getValue() == activeSolution.getValue()) {		
 					System.out.println(guess.toString() + " == " + activeSolution.toString());
+					player.setScore(player.getScore() + 1);
 				}
 				else {
 					System.out.println(guess.toString() + " != " + activeSolution.toString());
-					getPlayer().setScore(getPlayer().getScore() - 1);
+					System.out.println(player.getLives());
+					player.setLives(player.getLives() - 1);
+					System.out.println(player.getLives());
 				}
 			}
 		}

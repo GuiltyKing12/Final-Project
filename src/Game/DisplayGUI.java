@@ -50,7 +50,7 @@ public class DisplayGUI extends JPanel{
 		panel.setLayout(new GridLayout(3, 1, margin, margin));
 		playerName = new JTextField(15);
 		playerScore = new JTextField(10);
-		test = new JTextField();
+		test = new JTextField(10);
 		
 		JTextField playerScore = new JTextField(10);
 		JTextField test = new JTextField();
@@ -65,7 +65,6 @@ public class DisplayGUI extends JPanel{
 		playerScore.setEditable(false);
 		panel.add(playerScore);
 		
-		test.setText(setLives());
 		test.setText(String.valueOf(board.getPlayer().getLives()));
 		test.setBorder(new TitledBorder(new EtchedBorder(), "Lives"));
 		test.setEditable(false);
@@ -116,13 +115,19 @@ public class DisplayGUI extends JPanel{
 		this.question.setText(question.toString());
 	}
 	
-	public String setLives() {
-		String lives = "";
-		for(int i = 0; i < board.getPlayer().getScore(); i++) {
-			lives += "O   ";
-		}
-		
-		return lives;
+	public void setLives() {
+		test.setText(String.valueOf(board.getPlayer().getLives()));
+		System.out.println(String.valueOf(board.getPlayer().getLives()));
+	}
+	
+	public void setScore() {
+		String score = Integer.toString(board.getPlayer().getScore());
+		playerScore.setText(score);
+	}
+	
+	public void updateDisplay() {
+		setLives();
+		setScore();
 	}
 	
 	public Boolean checkCanMove(int col, int row) {
@@ -152,6 +157,7 @@ public class DisplayGUI extends JPanel{
 			}
 			
 			board.showGuessDialog();
+			updateDisplay();
 			board.repaint();
 		}
 	}
