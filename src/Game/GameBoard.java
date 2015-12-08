@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import com.sun.javafx.geom.Vec2d;
@@ -134,16 +136,17 @@ public class GameBoard extends JPanel {
 		Fraction activeSolution = GameEngine.getActiveQuestion().getSolution();
 		
 		if (isPositionSolutionCell(playerYPos, playerXPos)) {
-			if (guess.getValue() == activeSolution.getValue()) {		
-				System.out.println(guess.toString() + " == " + activeSolution.toString());
-			}
-			else {
-				System.out.println(guess.toString() + " != " + activeSolution.toString());
+			int reply = JOptionPane.showConfirmDialog(null, "Is this your answer?", "No", JOptionPane.YES_NO_OPTION);
+				if(reply == JOptionPane.YES_OPTION) {
+				if (guess.getValue() == activeSolution.getValue()) {		
+					System.out.println(guess.toString() + " == " + activeSolution.toString());
+				}
+				else {
+					System.out.println(guess.toString() + " != " + activeSolution.toString());
+				}
 			}
 		}
 	}
-	
-	
 	
 	private void initializeSolutionCellList() {
 		for (int i = 0; i < rows; i++) {

@@ -50,11 +50,11 @@ public class QuestionBank {
 	}
 	
 	private void initializeWordQuestions() {
-		wordQuestions.add(new Question("If you have a whole pizza and eat {FRACTION1} of it, how much of the pizza is left over?", QuestionType.WORD, currentLevel));
-		wordQuestions.add(new Question("Mrs. Smith baked 20 cookies. Mr. Smith ate {FRACTION1} of the cookies. How many cookies are left for the class?", QuestionType.WORD, currentLevel));
-		wordQuestions.add(new Question("If you have 20 dollars and give your friend {FRACTION1} of the total, how much money do you have left over?", QuestionType.WORD, currentLevel));
-		wordQuestions.add(new Question("If every day has 24 hours in it and you spend {FRACTION1} of your day playing video games, how much of the day do you have left to play 'MORE' video games?", QuestionType.WORD, currentLevel));
-		wordQuestions.add(new Question("Mr. Smith's house is 20 feet long and 30 feet wide. Mr. Bob's house is 2 times as long and {FRACTION1} as wide. What is the total area Mr. Bob's house?", QuestionType.WORD, currentLevel));
+		wordQuestions.add(new Question("If you have a whole pizza and eat {FRACTION1} of it, how much of the pizza is left over?", QuestionType.WORD1, currentLevel));
+		wordQuestions.add(new Question("Mrs. Smith baked 20 cookies. Mr. Smith ate {FRACTION1} of the cookies. How many cookies are left for the class?", QuestionType.WORD2, currentLevel));
+		wordQuestions.add(new Question("If you have 20 dollars and give your friend {FRACTION1} of the total, how much money do you have left over?", QuestionType.WORD3, currentLevel));
+		wordQuestions.add(new Question("If every day has 24 hours in it and you spend {FRACTION1} of your day playing video games, how much of the day do you have left to play 'MORE' video games?", QuestionType.WORD4, currentLevel));
+		wordQuestions.add(new Question("Mr. Smith's house is 20 feet long and 30 feet wide. Mr. Bob's house is 2 times as long and {FRACTION1} as wide. What is the total area Mr. Bob's house?", QuestionType.WORD5, currentLevel));
 	}
 
 	public ArrayList<Question> getQuestions() {
