@@ -31,9 +31,13 @@ public class GameBoard extends JPanel {
 	private Map<Character, String> legend;
 	private List<BoardCell> solutionCells;
 	private Player player;
+	private final static int POINTS_TO_ADVANCE=3;
+	
+	int levelCounter;
 	
 	public GameBoard() {
 		setPreferredSize(new Dimension(WIDTH, LENGTH));
+		levelCounter=1;
 		initialize();
 	}
 	
@@ -47,7 +51,7 @@ public class GameBoard extends JPanel {
 		initializeConfigFiles();
 		initializeLegend();
 		//initializeLevel("floorEasy.csv");
-		initializeLevel(1);
+		initializeLevel(levelCounter);
 		initializeSolutionCellList();
 	}
 	
@@ -144,6 +148,13 @@ public class GameBoard extends JPanel {
 				else {
 					System.out.println(guess.toString() + " != " + activeSolution.toString());
 				}
+				//checkPoints after guess, see if player has enough to advance
+				if(player.getScore() == POINTS_TO_ADVANCE) {
+					levelCounter++;
+					player.setScore(0);
+					GameEngine.advanceNextLevel();
+				}
+				
 			}
 		}
 	}
