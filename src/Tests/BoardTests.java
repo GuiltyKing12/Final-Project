@@ -6,13 +6,16 @@ import org.junit.Test;
 
 import Game.BoardCell;
 import Game.GameBoard;
+import Game.GameEngine;
 
 public class BoardTests {
 	static GameBoard board;
+	static GameEngine engine;
 	
 	@BeforeClass
 	public static void setUp() {
-		board = new GameBoard();
+		engine = new GameEngine();
+		board = engine.getBoard();
 	}
 
 	// Test board is correctly initialized from .csv file

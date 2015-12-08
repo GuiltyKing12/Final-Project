@@ -9,17 +9,21 @@ import org.junit.Test;
 import com.sun.javafx.geom.Vec2d;
 
 import Game.GameBoard;
+import Game.GameEngine;
 import Game.Player;
 
 public class PlayerTests {
 	static Player player;
 	static GameBoard board;
+	static GameEngine engine;
 	
 	@BeforeClass
 	public static void setUp() {
-		board = new GameBoard();
+		
+		engine = new GameEngine();
 		player = new Player();
-		board.initialize();
+		engine.initializeGame();
+		board = engine.getBoard();
 	}
 	
 	// Test starting location on Board
@@ -28,7 +32,7 @@ public class PlayerTests {
 		// assign player from game and see if player starts out in position (12, 12)
 		player = new Player(board.getPlayer());
 		assertEquals(12,  (int)(player.getPosition().x));
-		assertEquals(12, (int)(player.getPosition().y));
+		assertEquals(11, (int)(player.getPosition().y));
 	}
 	
 	// Test initialization (name, score, etc...)

@@ -24,7 +24,7 @@ import javax.swing.JPanel;
 import com.sun.javafx.geom.Vec2d;
 
 public class GameEngine extends JFrame {
-	public static int WIDTH = 1250;
+	public static int WIDTH = 1300;
 	public static int HEIGHT = 750;
 	private static final int MARGIN = 300;
 	
