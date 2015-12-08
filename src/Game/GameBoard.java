@@ -135,20 +135,49 @@ public class GameBoard extends JPanel {
 	public void showGuessDialog() {
 		int playerXPos = (int)player.getPosition().x;
 		int playerYPos = (int)player.getPosition().y;
-		
+		Question question = GameEngine.getActiveQuestion();
 		Fraction guess = getCellAt(playerYPos, playerXPos).getFraction();
-		Fraction activeSolution = GameEngine.getActiveQuestion().getSolution();
+		Fraction activeSolution = question.getSolution();
 		
 		if (isPositionSolutionCell(playerYPos, playerXPos)) {
 			repaint();
 			int reply = JOptionPane.showConfirmDialog(null, "Is this your answer?", "No", JOptionPane.YES_NO_OPTION);
-				if(reply == JOptionPane.YES_OPTION) {
-				if (guess.getValue() == activeSolution.getValue()) {		
-					System.out.println(guess.toString() + " == " + activeSolution.toString());
+			if(reply == JOptionPane.YES_OPTION) {
+				if (question.getType() == QuestionType.LESS) {
+					if (guess.isLessThan(activeSolution.getValue())) {
+						System.out.println(guess.toString() + " < " + activeSolution.toString());
+						player.setScore(player.getScore() + 1);
+						GameEngine.setActiveQuestion();
+					}
+					else {
+						System.out.println(guess.toString() + " !< " + activeSolution.toString());
+						player.setLives(player.getLives() - 1);
+						
+					}
+				}
+				else if (question.getType() == QuestionType.GREATER){
+					if (guess.isGreaterThan(activeSolution.getValue())) {
+						System.out.println(guess.toString() + " > " + activeSolution.toString());
+						player.setScore(player.getScore() + 1);
+						GameEngine.setActiveQuestion();
+					}
+					else {
+						System.out.println(guess.toString() + " !> " + activeSolution.toString());
+						player.setLives(player.getLives() - 1);
+						
+					}
 				}
 				else {
-					System.out.println(guess.toString() + " != " + activeSolution.toString());
-					getPlayer().setScore(getPlayer().getScore() - 1);
+					if (guess.getValue() == activeSolution.getValue()) {		
+						System.out.println(guess.toString() + " == " + activeSolution.toString());
+						player.setScore(player.getScore() + 1);
+						GameEngine.setActiveQuestion();
+					}
+					else {
+						System.out.println(guess.toString() + " != " + activeSolution.toString());
+						player.setLives(player.getLives() - 1);
+						
+					}
 				}
 				//checkPoints after guess, see if player has enough to advance
 				if(player.getScore() == POINTS_TO_ADVANCE) {

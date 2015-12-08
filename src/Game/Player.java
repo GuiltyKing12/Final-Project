@@ -66,6 +66,10 @@ public class Player {
 	public void setScore(int score) {
 		this.score = score;
 	}
+	
+	public void setLives(int lives) {
+		this.lives = lives;
+	}
 
 	public void setPosition(Vec2d position) {
 		this.position = position;

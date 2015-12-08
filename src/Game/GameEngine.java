@@ -41,7 +41,7 @@ public class GameEngine extends JFrame {
 	private JButton exit;
 	private Boolean isStarted;
 	private ComponentListener componentListener;
-	private QuestionBank questionBank;
+	private static QuestionBank questionBank;
 	private static Question activeQuestion;
 	private int gameLevel;
 	
@@ -241,12 +241,14 @@ public class GameEngine extends JFrame {
 		}
 	}
 	
+	
+	
 	public static Question getActiveQuestion() {
 		return activeQuestion;
 	}
 	
-	public static void setActiveQuestion(Question question) {
-		activeQuestion = question;
+	public static void setActiveQuestion() {
+		activeQuestion = questionBank.getRandomQuestion();
 	}
 	
 	private class ExitListener implements ActionListener {
