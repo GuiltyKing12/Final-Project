@@ -45,6 +45,7 @@ public class GameEngine extends JFrame {
 	private static Question activeQuestion;
 	public static int gameLevel;
 	
+	
 	public GameEngine() {	
 		gameLevel = 1;
 		initializeGame();
@@ -176,8 +177,7 @@ public class GameEngine extends JFrame {
 		return board;
 	}
 	
-
-	public void tryToAdvanceToNextLevel() {
+	public static void tryToAdvanceToNextLevel() {
 
 		
 		if(board.getPlayer().getScore() % 3 == 0) {
@@ -201,9 +201,9 @@ public class GameEngine extends JFrame {
 					break;
 				}
 			}			
-			}
+		}
 	}
-	
+
 	public void paint(Graphics g) {
 		super.paint(g);
 		g.setColor(Color.RED);
