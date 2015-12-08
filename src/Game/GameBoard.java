@@ -6,8 +6,10 @@ import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,17 +58,18 @@ public class GameBoard extends JPanel {
 	}
 	
 	public void initializeConfigFiles() {
-		boardConfigFiles.add("src/data/floorEasy.csv");
-		boardConfigFiles.add("src/data/floorMedium.csv");
-		boardConfigFiles.add("src/data/floorHard.csv");		
-		this.legendConfigFile = "src/data/Legend.txt";
+		boardConfigFiles.add("/data/floorEasy.csv");
+		boardConfigFiles.add("/data/floorMedium.csv");
+		boardConfigFiles.add("/data/floorHard.csv");		
+		this.legendConfigFile = "/data/Legend.txt";
 	}
 	
 	private void initializeLegend() {
 		try {
 			//FileReader fin = new FileReader(legendConfigFile);
-			FileInputStream streamIn = new FileInputStream(legendConfigFile);
-			Reader r = new InputStreamReader(streamIn);
+			//FileInputStream streamIn = new FileInputStream(legendConfigFile);
+			InputStream rdr = getClass().getResourceAsStream(legendConfigFile);
+			Reader r = new InputStreamReader(rdr);
 			BufferedReader br = new BufferedReader(r);
 			
 			String line = "";
@@ -89,9 +92,10 @@ public class GameBoard extends JPanel {
 	
 	public void initializeLevel(int level) {
 		try {
-			//FileReader filo = new FileReader(configFile);
-			FileInputStream streamIn = new FileInputStream(boardConfigFiles.get(level-1));
-			Reader r = new InputStreamReader(streamIn);
+			//FileReader filo = new FileReader(boardConfigFiles.get(level-1));
+			//FileInputStream streamIn = new FileInputStream(boardConfigFiles.get(level-1));
+			InputStream filo = getClass().getResourceAsStream(boardConfigFiles.get(level-1));
+			Reader r = new InputStreamReader(filo);
 			BufferedReader br = new BufferedReader(r);
 
 			String line = "";
