@@ -57,7 +57,7 @@ public class GameBoard extends JPanel {
 		initializeConfigFiles();
 		initializeLegend();
 		//initializeLevel("floorEasy.csv");
-		initializeLevel(levelCounter);
+		initializeLevel(GameEngine.gameLevel);
 		initializeSolutionCellList();
 	}
 	
@@ -140,6 +140,14 @@ public class GameBoard extends JPanel {
 		}
 	}
 	
+	public void clearAllFractionsOnBoard() {
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+					getCellAt(i, j).setHasFraction(false);
+			}
+		}
+	}
+	
 	public void showGuessDialog() {
 		int playerXPos = (int)player.getPosition().x;
 		int playerYPos = (int)player.getPosition().y;
@@ -148,47 +156,33 @@ public class GameBoard extends JPanel {
 		Fraction activeSolution = question.getSolution();
 		
 		if (isPositionSolutionCell(playerYPos, playerXPos)) {
-			repaint();
+			
 			int reply = JOptionPane.showConfirmDialog(null, "Is this your answer?", "No", JOptionPane.YES_NO_OPTION);
 			if(reply == JOptionPane.YES_OPTION) {
 				if (question.getType() == QuestionType.LESS) {
 					if (guess.isLessThan(activeSolution.getValue())) {
 						System.out.println(guess.toString() + " < " + activeSolution.toString());
 						player.setScore(player.getScore() + 1);
-						GameEngine.setActiveQuestion();
 					}
 					else {
 						System.out.println(guess.toString() + " !< " + activeSolution.toString());
 						player.setLives(player.getLives() - 1);
-						if (player.getLives()<=0)
-						{
-							/*
-							JFrame exiting = new JFrame("GameOver!");
-							exiting.setVisible(true);
-							exiting.setSize(500,500);
-							JOptionPane.showMessageDialog(exiting, player.getName()+" you received "+player.getScore()+" points!");
-							*/
-						}
-						
 					}
 				}
 				else if (question.getType() == QuestionType.GREATER){
 					if (guess.isGreaterThan(activeSolution.getValue())) {
 						System.out.println(guess.toString() + " > " + activeSolution.toString());
-						player.setScore(player.getScore() + 1);
-						GameEngine.setActiveQuestion();
+						player.setScore(player.getScore() + 1);					
 					}
 					else {
 						System.out.println(guess.toString() + " !> " + activeSolution.toString());
 						player.setLives(player.getLives() - 1);
-						
 					}
 				}
 				else {
 					if (guess.getValue() == activeSolution.getValue()) {		
 						System.out.println(guess.toString() + " == " + activeSolution.toString());
-						player.setScore(player.getScore() + 1);
-						GameEngine.setActiveQuestion();
+						player.setScore(player.getScore() + 1);	
 					}
 					else {
 						System.out.println(guess.toString() + " != " + activeSolution.toString());
@@ -196,14 +190,12 @@ public class GameBoard extends JPanel {
 						
 					}
 				}
-				//checkPoints after guess, see if player has enough to advance
-				if(player.getScore() == POINTS_TO_ADVANCE) {
-					levelCounter++;
-					player.setScore(0);
-					GameEngine.advanceNextLevel();
-				}
+
 				
 			}
+			GameEngine.setActiveQuestion();
+
+			GameEngine.tryToAdvanceToNextLevel();
 		}
 	}
 	

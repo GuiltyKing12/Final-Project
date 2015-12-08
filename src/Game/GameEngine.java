@@ -25,10 +25,10 @@ import com.sun.javafx.geom.Vec2d;
 
 public class GameEngine extends JFrame {
 	public static int WIDTH = 1250;
-	public static int HEIGHT = 700;
+	public static int HEIGHT = 750;
 	private static final int MARGIN = 300;
 	
-	private GameBoard board;
+	private static GameBoard board;
 
 	private DisplayGUI display;
 
@@ -43,10 +43,16 @@ public class GameEngine extends JFrame {
 	private ComponentListener componentListener;
 	private static QuestionBank questionBank;
 	private static Question activeQuestion;
-	private int gameLevel;
+	public static int gameLevel;
 	
 	
 	public GameEngine() {	
+		gameLevel = 1;
+		initializeGame();
+		initializeGUI();
+	}
+	public GameEngine(int level) {
+		gameLevel = level;
 		initializeGame();
 		initializeGUI();
 	}
@@ -55,7 +61,6 @@ public class GameEngine extends JFrame {
 		questionBank = new QuestionBank(gameLevel);
 		activeQuestion = questionBank.getRandomQuestion();
 		board = new GameBoard();
-		gameLevel = 0;
 		
 		addFractionsToSolutionCells();
 	}
@@ -172,10 +177,33 @@ public class GameEngine extends JFrame {
 		return board;
 	}
 	
-	public static void advanceNextLevel() {
+	public static void tryToAdvanceToNextLevel() {
+
 		
+		if(board.getPlayer().getScore() % 3 == 0) {
+		//gameLevel = board.getPlayer().getScore() / 3 + 1;
+			questionBank.initialize(gameLevel);
+			board.initializeLevel(gameLevel);
+			board.clearAllFractionsOnBoard();
+			addFractionsToSolutionCells();
+			boolean relocatedPlayer = false;
+			
+			
+			for (int i = 12; i < board.getRows(); i++) {
+				for (int j = 12; j < board.getCols(); j++) {
+					if (board.getCellAt(i, j).isWalkway()) {
+						board.getPlayer().setPosition(new Vec2d(i, j));
+						relocatedPlayer = true;
+						break;
+					}
+				}
+				if (relocatedPlayer) { 
+					break;
+				}
+			}			
+		}
 	}
-	
+
 	public void paint(Graphics g) {
 		super.paint(g);
 		g.setColor(Color.RED);
@@ -204,7 +232,7 @@ public class GameEngine extends JFrame {
 		JOptionPane.showMessageDialog(this, message, "Instructions", JOptionPane.INFORMATION_MESSAGE );
 	}
 	
-	public void addFractionsToSolutionCells() {
+	public static void addFractionsToSolutionCells() {
 		ArrayList<Fraction> temp = new ArrayList<Fraction>();
 		boolean cellsContainZero = false;
 		
@@ -215,7 +243,6 @@ public class GameEngine extends JFrame {
 		for (Fraction f : temp) {
 			for (int i = 0; i < board.getSolutionCells().size(); i++) {
 				BoardCell solutionCell = board.getSolutionCells().get(i);
-				
 				if (!solutionCell.getHasFraction()) {
 					if (f.equals(0.0) && !cellsContainZero) {
 						solutionCell.setFraction(f);
@@ -228,6 +255,7 @@ public class GameEngine extends JFrame {
 					else if (!f.equals(0.0)) {
 						solutionCell.setFraction(f);
 					}
+					
 					solutionCell.setHasFraction(true);
 					break;
 				}
@@ -240,8 +268,6 @@ public class GameEngine extends JFrame {
 			}
 		}
 	}
-	
-	
 	
 	public static Question getActiveQuestion() {
 		return activeQuestion;

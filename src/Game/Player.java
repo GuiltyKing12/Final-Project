@@ -19,7 +19,7 @@ public class Player {
 		this.name = "NULL";
 		this.position = null;
 		this.color = color.BLUE;
-		this.score = 0;
+		this.score = 2;
 		this.lives = 3;
 		this.position = new Vec2d(12, 11);
 	}
