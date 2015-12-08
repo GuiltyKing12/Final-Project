@@ -143,30 +143,36 @@ public class GameBoard extends JPanel {
 					if (guess.isLessThan(activeSolution.getValue())) {
 						System.out.println(guess.toString() + " < " + activeSolution.toString());
 						player.setScore(player.getScore() + 1);
+						GameEngine.setActiveQuestion();
 					}
 					else {
 						System.out.println(guess.toString() + " !< " + activeSolution.toString());
 						player.setLives(player.getLives() - 1);
+						
 					}
 				}
 				else if (question.getType() == QuestionType.GREATER){
 					if (guess.isGreaterThan(activeSolution.getValue())) {
 						System.out.println(guess.toString() + " > " + activeSolution.toString());
 						player.setScore(player.getScore() + 1);
+						GameEngine.setActiveQuestion();
 					}
 					else {
 						System.out.println(guess.toString() + " !> " + activeSolution.toString());
 						player.setLives(player.getLives() - 1);
+						
 					}
 				}
 				else {
 					if (guess.getValue() == activeSolution.getValue()) {		
 						System.out.println(guess.toString() + " == " + activeSolution.toString());
 						player.setScore(player.getScore() + 1);
+						GameEngine.setActiveQuestion();
 					}
 					else {
 						System.out.println(guess.toString() + " != " + activeSolution.toString());
 						player.setLives(player.getLives() - 1);
+						
 					}
 				}
 			}

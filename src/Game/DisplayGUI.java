@@ -125,9 +125,14 @@ public class DisplayGUI extends JPanel{
 	public void updateDisplay() {
 		setLives();
 		setScore();
+		setQuestion();
 		repaint();
 	}
 	
+	private void setQuestion() {
+		question.setText(GameEngine.getActiveQuestion().toString());
+	}
+
 	public Boolean checkCanMove(int col, int row) {
 		if(board.getCellAt(row, col).getInitial() == 'N') {
 			return false;
