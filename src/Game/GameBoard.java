@@ -47,7 +47,7 @@ public class GameBoard extends JPanel {
 		initializeConfigFiles();
 		initializeLegend();
 		//initializeLevel("floorEasy.csv");
-		initializeLevel(1);
+		initializeLevel(GameEngine.gameLevel);
 		initializeSolutionCellList();
 	}
 	
@@ -128,6 +128,14 @@ public class GameBoard extends JPanel {
 		}
 	}
 	
+	public void clearAllFractionsOnBoard() {
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+					getCellAt(i, j).setHasFraction(false);
+			}
+		}
+	}
+	
 	public void showGuessDialog() {
 		int playerXPos = (int)player.getPosition().x;
 		int playerYPos = (int)player.getPosition().y;
@@ -136,38 +144,33 @@ public class GameBoard extends JPanel {
 		Fraction activeSolution = question.getSolution();
 		
 		if (isPositionSolutionCell(playerYPos, playerXPos)) {
-			repaint();
+			
 			int reply = JOptionPane.showConfirmDialog(null, "Is this your answer?", "No", JOptionPane.YES_NO_OPTION);
 			if(reply == JOptionPane.YES_OPTION) {
 				if (question.getType() == QuestionType.LESS) {
 					if (guess.isLessThan(activeSolution.getValue())) {
 						System.out.println(guess.toString() + " < " + activeSolution.toString());
 						player.setScore(player.getScore() + 1);
-						GameEngine.setActiveQuestion();
 					}
 					else {
 						System.out.println(guess.toString() + " !< " + activeSolution.toString());
 						player.setLives(player.getLives() - 1);
-						
 					}
 				}
 				else if (question.getType() == QuestionType.GREATER){
 					if (guess.isGreaterThan(activeSolution.getValue())) {
 						System.out.println(guess.toString() + " > " + activeSolution.toString());
-						player.setScore(player.getScore() + 1);
-						GameEngine.setActiveQuestion();
+						player.setScore(player.getScore() + 1);					
 					}
 					else {
 						System.out.println(guess.toString() + " !> " + activeSolution.toString());
 						player.setLives(player.getLives() - 1);
-						
 					}
 				}
 				else {
 					if (guess.getValue() == activeSolution.getValue()) {		
 						System.out.println(guess.toString() + " == " + activeSolution.toString());
-						player.setScore(player.getScore() + 1);
-						GameEngine.setActiveQuestion();
+						player.setScore(player.getScore() + 1);	
 					}
 					else {
 						System.out.println(guess.toString() + " != " + activeSolution.toString());
@@ -176,6 +179,9 @@ public class GameBoard extends JPanel {
 					}
 				}
 			}
+			GameEngine.setActiveQuestion();
+
+			GameEngine.tryToAdvanceToNextLevel();
 		}
 	}
 	

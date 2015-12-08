@@ -56,24 +56,35 @@ public class Question {
 	}	
 	
 	private void formatText() {
-		String firstFractionText = fraction1.getNumerator() + "/" + fraction1.getDenominator();
-		rawText = rawText.replace("{FRACTION1}", firstFractionText);
+		String text = formatFraction(fraction1);
+		rawText = rawText.replace("{FRACTION1}", text);
 		
-		if (fraction2 != null) {
-			String secondFractionText = fraction2.getNumerator() + "/" + fraction2.getDenominator();
-			rawText = rawText.replace("{FRACTION2}", secondFractionText);			
+		if (fraction2 != null) {	
+			text = formatFraction(fraction2);
+			rawText = rawText.replace("{FRACTION2}", text);			
 		}
 		else {
 			
 		}
 		if (fraction3 != null) {
-			String thirdFractionText = fraction3.getNumerator() + "/" + fraction3.getDenominator();
-			rawText = rawText.replace("{FRACTION3}", thirdFractionText);
+			text = formatFraction(fraction3);
+			rawText = rawText.replace("{FRACTION3}", text);
 		}
 		
 		finalText = rawText;
 	}
 
+	public String formatFraction(Fraction fraction) {
+		String text;
+		if (fraction.canBeMadeWholeNumber()) {
+			text = String.valueOf(fraction.getWholeNumber());
+		}
+		else {
+			text = fraction.getNumerator() + "/" + fraction.getDenominator();
+		}
+		return text;
+	}
+	
 	@Override
 	public String toString() {
 		return finalText;
@@ -123,6 +134,10 @@ public class Question {
 				break;
 				
 			case WORD2:
+				int num = 20;
+				fraction1.setNumerator(fraction1.getNumerator() * num);
+				solution = subtract();
+				
 			case WORD3:
 				int qNum = 20;
 				fraction1.setNumerator(fraction1.getNumerator() * qNum);
@@ -149,9 +164,9 @@ public class Question {
 	
 	private Fraction less() {
 		if (fraction1.isLessThan(fraction2.value)) {
-			return new Fraction(1, 1);
+			return fraction2;
 		}
-		return new Fraction(0, 1);
+		return fraction1;
 	}
 	
 	private Fraction greater() {
@@ -162,16 +177,20 @@ public class Question {
 	}
 	
 	private Fraction equals() {
-		if (fraction1.equals(fraction2)) {
-			return new Fraction(1, 1);
+		if (!fraction1.hasCommonDenominator(fraction2)) {
+			fraction1.getCommonDenominator(fraction2);
 		}
 		
-		return new Fraction(0, 1);
+		if (fraction1.equals(fraction2)) {
+			return fraction2;
+		}
+		
+		return fraction1;
 	}
 
 	public Fraction subtract() {
 		if (!fraction1.hasCommonDenominator(fraction2)) {
-			fraction1.computeCommonDenominator(fraction2);
+			fraction1.getCommonDenominator(fraction2);
 		}
 
 		int numResult = fraction1.getNumerator() - fraction2.getNumerator();
@@ -182,7 +201,7 @@ public class Question {
 	
 	public Fraction add() {
 		if (!fraction1.hasCommonDenominator(fraction2)) {
-			fraction1.computeCommonDenominator(fraction2);
+			fraction1.getCommonDenominator(fraction2);
 		}
 		
 		int numResult = fraction1.getNumerator() + fraction2.getNumerator();
@@ -193,7 +212,7 @@ public class Question {
 	
 	public Fraction subAdd() {
 		if (!fraction1.hasCommonDenominator(fraction2, fraction3)) {
-			fraction1.computeCommonDenominator(fraction2, fraction3);
+			fraction1.getCommonDenominator(fraction2, fraction3);
 		}
 		
 		int numResult = fraction1.getNumerator() - fraction2.getNumerator() + fraction3.getNumerator();
@@ -204,7 +223,7 @@ public class Question {
 	
 	public Fraction addSub() {
 		if (!fraction1.hasCommonDenominator(fraction2, fraction3)) {
-			fraction1.computeCommonDenominator(fraction2, fraction3);
+			fraction1.getCommonDenominator(fraction2, fraction3);
 		}
 		
 		

@@ -49,7 +49,7 @@ public class Fraction {
 		return this.denominator == fraction1.getDenominator() && this.denominator == fraction2.getDenominator();
 	}
 	
-	public void computeCommonDenominator(Fraction fraction) {
+	public void getCommonDenominator(Fraction fraction) {
 		if (!hasCommonDenominator(fraction)) {
 			if (denominator % fraction.getDenominator() == 0) {
 				int conversionRatio = denominator / fraction.getDenominator();
@@ -71,12 +71,16 @@ public class Fraction {
 		}
 	}
 	
-	public void computeCommonDenominator(Fraction fraction2, Fraction fraction3) {
-		if (!hasCommonDenominator(fraction2, fraction3)) { 
-			this.computeCommonDenominator(fraction2);
-			
-			if (!hasCommonDenominator(fraction2, fraction3)) {
-				this.computeCommonDenominator(fraction3);
+	public void getCommonDenominator(Fraction fraction2, Fraction fraction3) {
+		if (!hasCommonDenominator(this, fraction2)) { 
+			this.getCommonDenominator(fraction2);		
+		}
+		
+		if (!hasCommonDenominator(fraction2, fraction3)) {
+			fraction2.getCommonDenominator(fraction3);
+
+			if (!hasCommonDenominator(this, fraction2)) { 
+				this.getCommonDenominator(fraction2);
 			}
 		}
 	}
@@ -89,8 +93,20 @@ public class Fraction {
 		return (double) numerator / (double) denominator;
 	}
 	
+	public int getWholeNumber() {
+		return numerator / denominator;
+	}
+	
 	public boolean equals(Fraction fraction) {
+		if (this.value < fraction.getValue()) {
+			return fraction.getValue() - this.value <= EPSILON;
+		}
+		
 		return this.value - fraction.getValue() <= EPSILON;
+	}
+	
+	public boolean canBeMadeWholeNumber() {
+		return numerator % denominator == 0;
 	}
 	
 	public boolean equals(double value) {
@@ -105,12 +121,14 @@ public class Fraction {
 	}
 	
 	public boolean isLessThan(double value) {
-		return this.value < value;
+		return this.value - value < 0;
 	}
 
 	@Override
 	public String toString() {
-		//String temp = String.valueOf(numerator) + " / " + String.valueOf(denominator);
+		if (numerator % denominator == 0) {
+			return String.valueOf(numerator/denominator);
+		}
 		return (numerator + "/" + denominator);
 	}
 }

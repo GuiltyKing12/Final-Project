@@ -40,9 +40,15 @@ public class BoardCell {
 		
 		if (hasFraction && writeFraction) {
 			g.setColor(Color.BLACK);
-			g.drawString(String.valueOf(fraction.getNumerator()), (int)(row * size + size * 0.35), (int)(col * size  + size * 0.45));
-			g.drawString("_" + "__", (int)(row * size + size * 0.15), (int)(col * size  + size * 0.5));
-			g.drawString(String.valueOf(fraction.getDenominator()), (int)(row * size + size * 0.35), (int)(col * size  + size * 0.98));
+			
+			if (fraction.getNumerator() % fraction.getDenominator() == 0) {
+				g.drawString(String.valueOf(fraction.getNumerator()/fraction.getDenominator()), (int)(row * size + size * 0.40), (int)(col * size  + size * 0.75));
+			}
+			else {
+				g.drawString(String.valueOf(fraction.getNumerator()), (int)(row * size + size * 0.35), (int)(col * size  + size * 0.45));
+				g.drawString("_" + "__", (int)(row * size + size * 0.15), (int)(col * size  + size * 0.5));
+				g.drawString(String.valueOf(fraction.getDenominator()), (int)(row * size + size * 0.35), (int)(col * size  + size * 0.98));
+			}
 		}
 	}
 	
@@ -85,6 +91,10 @@ public class BoardCell {
 
 	public void setFraction(Fraction fraction) {
 		this.fraction = fraction;
+	}
+
+	public boolean isWalkway() {
+		return initial == 'W';
 	}
 
 }

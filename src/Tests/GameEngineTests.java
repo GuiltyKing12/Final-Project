@@ -41,7 +41,7 @@ public class GameEngineTests {
 		assertEquals(5, engine.getBoard().getPlayer().getScore());
 		
 		// Level should now advance and score reset to 0
-		engine.advanceNextLevel();
+		engine.tryToAdvanceToNextLevel();
 		assertEquals(0, engine.getBoard().getPlayer().getScore());
 		
 		
