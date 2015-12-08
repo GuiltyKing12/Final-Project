@@ -186,7 +186,7 @@ public class GameEngine extends JFrame {
 		}
 		else
 		{
-			g.drawString("MAZE RUNNER", WIDTH / 2 - MARGIN, HEIGHT / 4);
+			g.drawString("FRACTION RUNNER", WIDTH / 2 - MARGIN, HEIGHT / 4);
 		}
 	}
 	
@@ -200,7 +200,7 @@ public class GameEngine extends JFrame {
 		String message = "Welcome to Maze Runner! \n In maze runner your objective is to esacpe the maze by answering fraction questions. "
 				+ "\n A question will be given and the answer will be somewhere in the maze.  "
 				+ "\n You must go through the maze and find the correct answers, for every wrong answer you lose a life. \n"
-				+ " You only have three lives, so be careful. \n You can also find items that give you back one life.";
+				+ " You only have three lives, so be careful. \n";
 		JOptionPane.showMessageDialog(this, message, "Instructions", JOptionPane.INFORMATION_MESSAGE );
 	}
 	
