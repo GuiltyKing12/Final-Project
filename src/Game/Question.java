@@ -124,23 +124,24 @@ public class Question {
 				
 			case WORD2:
 			case WORD3:
+				int qNum = 20;
+				fraction1.setNumerator(fraction1.getNumerator() * qNum);
 				Fraction tempFrac = fraction1;
-				fraction1 = new Fraction(20, 1);
+				fraction1 = new Fraction(qNum, 1);
 				fraction2 = tempFrac;
 				solution = subtract();
 				break;
 				
 			case WORD4:
+				qNum = 24;
+				fraction1.setNumerator(fraction1.getNumerator() * qNum);
 				Fraction tempFrac2 = fraction1;
-				fraction1 = new Fraction(24, 1);
+				fraction1 = new Fraction(qNum, 1);
 				fraction2 = tempFrac2;
 				solution = subtract();
 				break;
 				
 			case WORD5:
-				Fraction tempFrac3 = fraction1;
-				fraction1 = new Fraction(20, 1);
-				fraction2 = tempFrac3;
 				solution = subtract();
 				break;
 		}
