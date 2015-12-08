@@ -46,7 +46,7 @@ public class Question {
 		int randNumerator = rand.nextInt(initial + levelScaling) + 1;
 		int randDenominator = rand.nextInt((initial - 1) + levelScaling) + 2;
 		
-		if (type == QuestionType.WORD) {
+		if (type.toString().contains("WORD")) {
 			while (randNumerator > randDenominator) {
 				randNumerator = rand.nextInt(initial + levelScaling) + 1;
 			}
@@ -115,9 +115,27 @@ public class Question {
 				solution = equals();
 				break;
 				
-			case WORD:
-				// WRONG SOLUTION NEEDS TO HAVE LOGIC IMPLEMENTED!
-				solution = equals();
+			case WORD1:
+				Fraction temp = fraction1;
+				fraction1 = new Fraction(20, 1);
+				fraction2 = temp;
+				solution = subtract();
+				break;
+				
+			case WORD2:
+				Fraction tempFrac = fraction1;
+				fraction1 = new Fraction(20, 1);
+				fraction2 = tempFrac;
+				solution = subtract();
+				break;
+				
+			case WORD3:
+				break;
+				
+			case WORD4:
+				break;
+				
+			case WORD5:
 				break;
 		}
 	}
