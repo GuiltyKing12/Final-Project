@@ -143,6 +143,7 @@ public class GameBoard extends JPanel {
 				}
 				else {
 					System.out.println(guess.toString() + " != " + activeSolution.toString());
+					getPlayer().setScore(getPlayer().getScore() - 1);
 				}
 			}
 		}
