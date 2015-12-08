@@ -45,6 +45,7 @@ public class GameEngine extends JFrame {
 	private static Question activeQuestion;
 	private int gameLevel;
 	
+	
 	public GameEngine() {	
 		initializeGame();
 		initializeGUI();
@@ -171,10 +172,8 @@ public class GameEngine extends JFrame {
 		return board;
 	}
 	
-	public void advanceNextLevel() {
-		if(board.getPlayer().getScore() == 3) {
-			//board.initializeLevel();
-		}
+	public static void advanceNextLevel() {
+		
 	}
 	
 	public void paint(Graphics g) {

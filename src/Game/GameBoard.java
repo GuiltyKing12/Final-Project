@@ -3,6 +3,8 @@ package Game;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,6 +18,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -33,9 +37,13 @@ public class GameBoard extends JPanel {
 	private Map<Character, String> legend;
 	private List<BoardCell> solutionCells;
 	private Player player;
+	private final static int POINTS_TO_ADVANCE=3;
+	
+	int levelCounter;
 	
 	public GameBoard() {
 		setPreferredSize(new Dimension(WIDTH, LENGTH));
+		levelCounter=1;
 		initialize();
 	}
 	
@@ -49,7 +57,7 @@ public class GameBoard extends JPanel {
 		initializeConfigFiles();
 		initializeLegend();
 		//initializeLevel("floorEasy.csv");
-		initializeLevel(1);
+		initializeLevel(levelCounter);
 		initializeSolutionCellList();
 	}
 	
@@ -152,6 +160,15 @@ public class GameBoard extends JPanel {
 					else {
 						System.out.println(guess.toString() + " !< " + activeSolution.toString());
 						player.setLives(player.getLives() - 1);
+						if (player.getLives()<=0)
+						{
+							/*
+							JFrame exiting = new JFrame("GameOver!");
+							exiting.setVisible(true);
+							exiting.setSize(500,500);
+							JOptionPane.showMessageDialog(exiting, player.getName()+" you received "+player.getScore()+" points!");
+							*/
+						}
 						
 					}
 				}
@@ -179,9 +196,17 @@ public class GameBoard extends JPanel {
 						
 					}
 				}
+				//checkPoints after guess, see if player has enough to advance
+				if(player.getScore() == POINTS_TO_ADVANCE) {
+					levelCounter++;
+					player.setScore(0);
+					GameEngine.advanceNextLevel();
+				}
+				
 			}
 		}
 	}
+	
 	
 	private void initializeSolutionCellList() {
 		for (int i = 0; i < rows; i++) {
