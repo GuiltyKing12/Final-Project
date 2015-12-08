@@ -7,12 +7,18 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
 import javax.swing.Box;
+import javax.swing.InputMap;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
@@ -32,7 +38,6 @@ public class DisplayGUI extends JPanel{
 	private JButton right;
 	
 	public DisplayGUI(GameBoard board) {
-		//setLayout(new FlowLayout());
 		setLayout(new BorderLayout(3, 1));
 		this.board = board;
 		
@@ -74,7 +79,6 @@ public class DisplayGUI extends JPanel{
 		playerName.setText(name);
 	}
 	
-	
 	public void setQuestionDisplay() {
 		JPanel panel = new JPanel();
 		question = new JTextArea(1,20);
@@ -107,7 +111,7 @@ public class DisplayGUI extends JPanel{
 		
 		mainPanel.add(playerControl, BorderLayout.SOUTH);
 	}
-
+	
 	public void setQuestionField(Question question) {
 		this.question.setText(question.toString());
 	}
