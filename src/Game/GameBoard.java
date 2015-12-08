@@ -52,10 +52,10 @@ public class GameBoard extends JPanel {
 	}
 	
 	public void initializeConfigFiles() {
-		boardConfigFiles.add("src/data/floorEasy.csv");
-		boardConfigFiles.add("src/data/floorMedium.csv");
-		boardConfigFiles.add("src/data/floorHard.csv");		
-		this.legendConfigFile = "src/data/Legend.txt";
+		boardConfigFiles.add("/data/floorEasy.csv");
+		boardConfigFiles.add("/data/floorMedium.csv");
+		boardConfigFiles.add("/data/floorHard.csv");		
+		this.legendConfigFile = "/data/Legend.txt";
 	}
 	
 	private void initializeLegend() {
