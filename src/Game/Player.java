@@ -21,7 +21,7 @@ public class Player {
 		this.color = color.BLUE;
 		this.score = 0;
 		this.lives = 3;
-		this.position = new Vec2d(12, 12);
+		this.position = new Vec2d(12, 11);
 	}
 	
 	public Player(Player player2) {
